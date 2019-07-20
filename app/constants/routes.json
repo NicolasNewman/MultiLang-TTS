@@ -1,4 +1,6 @@
 {
-  "HOME": "/",
-  "COUNTER": "/counter"
+    "HOME": "/home",
+    "HOME_MEDIA": "/home/media",
+    "HOME_FILE": "/home/file",
+    "SETTINGS": "/settings"
 }

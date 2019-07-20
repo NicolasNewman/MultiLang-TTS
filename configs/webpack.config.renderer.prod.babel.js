@@ -82,7 +82,8 @@ export default merge.smart(baseConfig, {
                     {
                         loader: 'less-loader',
                         options: {
-                            sourceMap: true
+                            sourceMap: true,
+                            strictMath: false
                         }
                     }
                 ]
@@ -106,7 +107,8 @@ export default merge.smart(baseConfig, {
                     {
                         loader: 'less-loader',
                         options: {
-                            sourceMap: true
+                            sourceMap: true,
+                            strictMath: false
                         }
                     }
                 ]

@@ -104,7 +104,10 @@ export default merge.smart(baseConfig, {
                         }
                     },
                     {
-                        loader: 'less-loader'
+                        loader: 'less-loader',
+                        options: {
+                            strictMath: true
+                        }
                     }
                 ]
             },
@@ -125,7 +128,10 @@ export default merge.smart(baseConfig, {
                         }
                     },
                     {
-                        loader: 'less-loader'
+                        loader: 'less-loader',
+                        options: {
+                            strictMath: true
+                        }
                     }
                 ]
             },
