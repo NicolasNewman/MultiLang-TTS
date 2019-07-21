@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Tabs } from 'antd';
 import FileList from '../FileList/FileList';
-// import { Dispatch } from 'redux';
 
+const { dialog } = require('electron').remote;
 const { TabPane } = Tabs;
 
 class FolderNav extends React.Component {
@@ -13,7 +13,6 @@ class FolderNav extends React.Component {
             activeKey: this.props.panes[0].key,
             panes: this.props.panes
         };
-        // console.log();
     }
 
     componentDidUpdate(prevProps) {
@@ -31,17 +30,13 @@ class FolderNav extends React.Component {
         this[action](targetKey);
     };
     add = () => {
+        const path = dialog.showOpenDialog({
+            title: 'Select a Folder with Audio Files',
+            properties: ['openDirectory']
+        })[0];
+        const name = path.substr(path.lastIndexOf('\\') + 1, path.length - 1);
         const activeKey = `newTab${this.newTabIndex++}`;
-        this.props.addTab('hi', activeKey);
-        // const panes = [...this.state.panes];
-        // console.log(panes);
-        // console.log(panes);
-        // panes.push({
-        //     title: 'New tab',
-        //     content: 'content',
-        //     key: activeKey
-        // });
-        // this.setState({ panes });
+        this.props.addTab(name, activeKey, path);
     };
 
     remove = targetKey => {

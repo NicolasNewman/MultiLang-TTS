@@ -9,7 +9,7 @@ import { ADD_TAB, REMOVE_TAB } from '../actions/folder';
 // }
 
 const initialState = {
-    panes: [{ title: 'Test', key: '0', content: 'Hello' }]
+    panes: [{ title: 'Test', key: '0', content: 'Hello', path: '' }]
 };
 
 export default function folder(state = initialState, action) {
@@ -18,7 +18,12 @@ export default function folder(state = initialState, action) {
             return {
                 panes: [
                     ...state.panes,
-                    { title: action.title, key: action.key, content: '3' }
+                    {
+                        title: action.title,
+                        key: action.key,
+                        content: '3',
+                        path: action.path
+                    }
                 ]
             };
         case REMOVE_TAB:
