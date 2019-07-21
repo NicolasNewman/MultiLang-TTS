@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import { Layout, Menu } from 'antd';
-// import FolderNav from '../FolderNav/FolderNav';
+import FolderNav from '../FolderNav/FolderNav';
 // import Input from '../Input/Input';
 // import Controls from '../Controls/Controls';
 
@@ -13,7 +13,7 @@ export default class Home extends React.Component {
         return (
             <div className="home">
                 <div className="home__folder-nav ">
-                    <p>Hi</p>
+                    <FolderNav panes={this.props.panes} />>
                 </div>
                 <div className="home__main-content">
                     <p>Hi</p>
