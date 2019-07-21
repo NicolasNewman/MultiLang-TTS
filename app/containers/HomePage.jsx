@@ -1,23 +1,19 @@
 // import * as React from 'react';
 // import { Component } from 'react';
-import { bindActionCreators, Dispatch } from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Home from '../components/Home/Home';
 
 import FolderActions from '../actions/folder';
-import { FolderState } from '../reducers/folder';
 
-interface MasterState {
-    folder: FolderState;
-}
-
-const mapStateToProps = (state: MasterState) => {
+const mapStateToProps = state => {
+    // console.log(state);
     return {
         panes: state.folder.panes
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = dispatch => {
     return bindActionCreators(FolderActions, dispatch);
 };
 

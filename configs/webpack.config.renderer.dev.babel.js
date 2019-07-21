@@ -46,10 +46,10 @@ export default merge.smart(baseConfig, {
     target: 'electron-renderer',
 
     entry: [
-        'react-hot-loader/patch',
+        ...(process.env.PLAIN_HMR ? [] : ['react-hot-loader/patch']),
         `webpack-dev-server/client?http://localhost:${port}/`,
         'webpack/hot/only-dev-server',
-        require.resolve('../app/index.tsx')
+        require.resolve('../app/index')
     ],
 
     output: {
@@ -59,6 +59,16 @@ export default merge.smart(baseConfig, {
 
     module: {
         rules: [
+            {
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true
+                    }
+                }
+            },
             {
                 test: /\.global\.css$/,
                 use: [

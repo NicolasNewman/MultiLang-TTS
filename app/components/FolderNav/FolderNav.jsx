@@ -4,7 +4,6 @@ import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 
 const FolderNav = props => {
-    // type of props
     console.log(props);
     console.log(props.panes);
     return (

@@ -1,15 +1,9 @@
-import {
-    app,
-    Menu,
-    shell,
-    BrowserWindow,
-    MenuItemConstructorOptions
-} from 'electron';
+import { app, Menu, shell, BrowserWindow } from 'electron';
 
 export default class MenuBuilder {
-    mainWindow: BrowserWindow;
+    mainWindow;
 
-    constructor(mainWindow: BrowserWindow) {
+    constructor(mainWindow) {
         this.mainWindow = mainWindow;
     }
 
@@ -33,7 +27,7 @@ export default class MenuBuilder {
     }
 
     setupDevelopmentEnvironment() {
-        this.mainWindow.webContents.toggleDevTools();
+        this.mainWindow.openDevTools();
         this.mainWindow.webContents.on('context-menu', (e, props) => {
             const { x, y } = props;
 
@@ -41,14 +35,14 @@ export default class MenuBuilder {
                 {
                     label: 'Inspect element',
                     click: () => {
-                        this.mainWindow.webContents.inspectElement(x, y);
+                        this.mainWindow.inspectElement(x, y);
                     }
                 }
-            ]).popup({ window: this.mainWindow });
+            ]).popup(this.mainWindow);
         });
     }
 
-    buildDarwinTemplate(): MenuItemConstructorOptions[] {
+    buildDarwinTemplate() {
         const subMenuAbout = {
             label: 'Electron',
             submenu: [
@@ -127,7 +121,7 @@ export default class MenuBuilder {
                     label: 'Toggle Developer Tools',
                     accelerator: 'Alt+Command+I',
                     click: () => {
-                        this.mainWindow.webContents.toggleDevTools();
+                        this.mainWindow.toggleDevTools();
                     }
                 }
             ]
@@ -210,15 +204,18 @@ export default class MenuBuilder {
             subMenuView,
             subMenuWindow,
             subMenuHelp
-        ] as MenuItemConstructorOptions[];
+        ];
     }
 
-    buildDefaultTemplate(): MenuItemConstructorOptions[] {
+    buildDefaultTemplate() {
         const templateDefault = [
             {
                 label: '&File',
                 submenu: [
-                    { label: '&Open', accelerator: 'Ctrl+O' },
+                    {
+                        label: '&Open',
+                        accelerator: 'Ctrl+O'
+                    },
                     {
                         label: '&Close',
                         accelerator: 'Ctrl+W',
@@ -253,7 +250,7 @@ export default class MenuBuilder {
                                   label: 'Toggle &Developer Tools',
                                   accelerator: 'Alt+Ctrl+I',
                                   click: () => {
-                                      this.mainWindow.webContents.toggleDevTools();
+                                      this.mainWindow.toggleDevTools();
                                   }
                               }
                           ]

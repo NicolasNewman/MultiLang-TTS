@@ -10,7 +10,7 @@ const history = createHashHistory();
 
 const rootReducer = createRootReducer(history);
 
-const configureStore = (initialState?: any) => {
+const configureStore = initialState => {
     // Redux Configuration
     const middleware = [];
     const enhancers = [];
@@ -40,9 +40,8 @@ const configureStore = (initialState?: any) => {
     };
     // If Redux DevTools Extension is installed use it, otherwise use Redux compose
     /* eslint-disable no-underscore-dangle */
-    const composeEnhancers = (window as any)
-        .__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
               // Options: http://extension.remotedev.io/docs/API/Arguments.html
               actionCreators
           })
@@ -56,9 +55,10 @@ const configureStore = (initialState?: any) => {
     // Create Store
     const store = createStore(rootReducer, initialState, enhancer);
 
-    if ((module as any).hot) {
-        (module as any).hot.accept(
-            '../reducers', // eslint-disable-next-line global-require
+    if (module.hot) {
+        module.hot.accept(
+            '../reducers',
+            // eslint-disable-next-line global-require
             () => store.replaceReducer(require('../reducers').default)
         );
     }

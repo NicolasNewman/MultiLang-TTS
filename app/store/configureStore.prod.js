@@ -1,3 +1,4 @@
+// @flow
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
@@ -9,7 +10,7 @@ const rootReducer = createRootReducer(history);
 const router = routerMiddleware(history);
 const enhancer = applyMiddleware(thunk, router);
 
-function configureStore(initialState?: any) {
+function configureStore(initialState) {
     return createStore(rootReducer, initialState, enhancer);
 }
 
