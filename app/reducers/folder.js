@@ -9,7 +9,8 @@ import { ADD_TAB, REMOVE_TAB } from '../actions/folder';
 // }
 
 const initialState = {
-    panes: [{ title: 'Test', key: '0', content: 'Hello', path: '' }]
+    panes: []
+    // panes: [{ title: 'Test', key: '0', content: 'Hello', path: '' }]
 };
 
 export default function folder(state = initialState, action) {

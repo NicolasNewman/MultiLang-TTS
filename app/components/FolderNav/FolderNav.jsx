@@ -10,7 +10,7 @@ class FolderNav extends React.Component {
         super(props);
         this.newTabIndex = 0;
         this.state = {
-            activeKey: this.props.panes[0].key,
+            activeKey: this.props.panes[0] ? this.props.panes[0].key : 0,
             panes: this.props.panes
         };
     }
@@ -20,46 +20,36 @@ class FolderNav extends React.Component {
             this.setState({ panes: this.props.panes });
         }
     }
-    // console.log(props);
-    // console.log(props.panes);
 
-    // createNewTab = () => {
-    //     console.log('here');
-    // };
     onEdit = (targetKey, action) => {
         this[action](targetKey);
     };
+
     add = () => {
         const path = dialog.showOpenDialog({
             title: 'Select a Folder with Audio Files',
             properties: ['openDirectory']
         })[0];
-        const name = path.substr(path.lastIndexOf('\\') + 1, path.length - 1);
+        let name = path.substr(path.lastIndexOf('\\') + 1, path.length - 1);
+        name = name.length > 5 ? name.substr(0, 5).concat('...') : name;
+
         const activeKey = `newTab${this.newTabIndex++}`;
+
         this.props.addTab(name, activeKey, path);
     };
 
     remove = targetKey => {
         this.props.removeTab(targetKey);
-        // let activeKey = this.state.activeKey;
-        // let lastIndex;
-        // this.state.panes.forEach((pane, i) => {
-        //     if (pane.key === targetKey) {
-        //         lastIndex = i - 1;
-        //     }
-        // });
-        // const panes = this.state.panes.filter(pane => pane.key !== targetKey);
-        // this.setState({ panes, activeKey });
     };
 
     render() {
         console.log(this.props);
         return (
-            // <p>Hello</p>
             <Tabs
                 // onChange={this.onChange}
                 // activeKey={this.state.activeKey}
                 type="editable-card"
+                tabPosition="left"
                 onEdit={this.onEdit}
             >
                 {this.state.panes.map(pane => {
@@ -69,8 +59,7 @@ class FolderNav extends React.Component {
                             key={pane.key}
                             // closable={pane.closable}
                         >
-                            <FileList />
-                            {/* {pane.content} */}
+                            <FileList path={pane.path} />
                         </TabPane>
                     );
                 })}
