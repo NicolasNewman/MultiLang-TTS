@@ -3,7 +3,7 @@ import * as React from 'react';
 import FolderNav from '../FolderNav/FolderNav';
 import AudioInput from '../AudioInput/AudioInput';
 // import Input from '../Input/Input';
-// import Controls from '../Controls/Controls';
+import Controls from '../Controls/Controls';
 import { TabModel } from '../../reducers/folder';
 
 // const { Footer, Sider, Content, Header } = Layout;
@@ -21,6 +21,7 @@ export default class Home extends React.Component {
                 </div>
                 <div className="home__main-content">
                     <AudioInput />
+                    <Controls />
                 </div>
             </div>
         );

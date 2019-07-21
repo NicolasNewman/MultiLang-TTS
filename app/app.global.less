@@ -2,13 +2,14 @@
  * @NOTE: Prepend a `~` to css file paths that are in your node_modules
  *        See https://github.com/webpack-contrib/sass-loader#imports
  */
-// @import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
 @import '~antd/dist/antd.css';
+@import 'components/Controls/Controls.less';
 
 .home {
     display: grid;
     grid-template-columns: 25vw 75vw;
-    grid-template-rows: 90vh 10vh;
+    grid-template-rows: 85vh 15vh;
     height: 100vh;
 
     &__folder-nav {
