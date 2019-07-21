@@ -1,15 +1,21 @@
 import * as React from 'react';
-import { Button } from 'antd';
+import { Button, Slider } from 'antd';
 
 const MediaControl = () => {
     return (
         <div className="controls">
             <div className="controls__playbar">
-                <p>asd</p>
+                <Slider />
             </div>
             <div className="controls__buttons">
                 <Button type="primary">
+                    <i className="fas fa-step-backward" />
+                </Button>
+                <Button type="primary">
                     <i className="fas fa-play" />
+                </Button>
+                <Button type="primary">
+                    <i className="fas fa-step-forward" />
                 </Button>
             </div>
         </div>

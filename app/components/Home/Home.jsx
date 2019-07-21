@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 // import { Layout, Menu } from 'antd';
 import FolderNav from '../FolderNav/FolderNav';
 import AudioInput from '../AudioInput/AudioInput';
@@ -8,11 +8,21 @@ import { TabModel } from '../../reducers/folder';
 
 // const { Footer, Sider, Content, Header } = Layout;
 
-export default class Home extends React.Component {
+export default class Home extends Component {
+    toggleControl(path) {
+        path = `/home/${path}`;
+        if (this.props.history.location.pathname !== path) {
+            this.props.history.push(path);
+        }
+    }
     render() {
+        console.log(this);
         return (
             <div className="home">
-                <div className="home__folder-nav ">
+                <div
+                    className="home__folder-nav "
+                    onClick={this.toggleControl.bind(this, 'media')}
+                >
                     <FolderNav
                         addTab={this.props.addTab}
                         removeTab={this.props.removeTab}
@@ -20,7 +30,12 @@ export default class Home extends React.Component {
                     />
                 </div>
                 <div className="home__main-content">
-                    <AudioInput />
+                    <div
+                        onClick={this.toggleControl.bind(this, 'file')}
+                        className="click-wrapper"
+                    >
+                        <AudioInput />
+                    </div>
                     <Controls />
                 </div>
             </div>
