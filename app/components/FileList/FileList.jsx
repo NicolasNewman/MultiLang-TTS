@@ -6,8 +6,7 @@ import { promisify } from 'util';
 export default class FileList extends Component {
     state = {
         data: [],
-        loading: false,
-        hasMore: true
+        targetFile: ''
     };
     readDirAsync = promisify(readdir);
 
@@ -22,23 +21,22 @@ export default class FileList extends Component {
             });
         });
     }
-
-    handleInfiniteLoad() {
-        let { data } = this.state;
-        this.setState({ loading: true });
-        if (data.length > 14) {
-            message.warning('IL loaded all');
-            this.setState({ hasMore: false, loading: false });
-            return;
-        }
+    fileClicked(filename) {
+        this.setState({ targetFile: filename });
     }
-
     render() {
         return (
             <div className="home__folder-nav--infinite">
                 <List
                     dataSource={this.state.data}
-                    renderItem={item => <List.Item>{item}</List.Item>}
+                    renderItem={item => (
+                        <div
+                            onClick={this.fileClicked.bind(this, item)}
+                            className="home__folder-nav--file"
+                        >
+                            <List.Item>{item}</List.Item>
+                        </div>
+                    )}
                 />
             </div>
         );
