@@ -4,7 +4,7 @@ import { Button, Slider } from 'antd';
 const MediaControl = () => {
     return (
         <div className="controls">
-            <div className="controls__playbar">
+            <div className="controls__playback">
                 <Slider />
             </div>
             <div className="controls__buttons">

@@ -5,16 +5,17 @@ import { connect } from 'react-redux';
 import Home from '../components/Home/Home';
 
 import FolderActions from '../actions/folder';
+import FileActions from '../actions/file';
 
 const mapStateToProps = state => {
-    // console.log(state);
     return {
-        panes: state.folder.panes
+        panes: state.folder.panes,
+        targetFile: state.file.file
     };
 };
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators(FolderActions, dispatch);
+    return bindActionCreators({ ...FolderActions, ...FileActions }, dispatch);
 };
 
 export default connect(

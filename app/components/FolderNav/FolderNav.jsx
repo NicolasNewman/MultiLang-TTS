@@ -59,7 +59,11 @@ class FolderNav extends React.Component {
                             key={pane.key}
                             // closable={pane.closable}
                         >
-                            <FileList path={pane.path} />
+                            <FileList
+                                setFile={this.props.setFile}
+                                targetFile={this.props.targetFile}
+                                path={pane.path}
+                            />
                         </TabPane>
                     );
                 })}

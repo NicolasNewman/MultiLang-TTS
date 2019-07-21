@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { readdir } from 'fs';
 import { List, message } from 'antd';
 import { promisify } from 'util';
+import { setFile } from '../../actions/file';
 
 export default class FileList extends Component {
     state = {
@@ -9,6 +10,7 @@ export default class FileList extends Component {
         targetFile: ''
     };
     readDirAsync = promisify(readdir);
+    fileClass = 'home__folder-nav--file';
 
     async getFiles() {
         return await this.readDirAsync(this.props.path);
@@ -22,7 +24,8 @@ export default class FileList extends Component {
         });
     }
     fileClicked(filename) {
-        this.setState({ targetFile: filename });
+        this.props.setFile(filename);
+        // this.setState({ targetFile: filename });
     }
     render() {
         return (
@@ -32,7 +35,11 @@ export default class FileList extends Component {
                     renderItem={item => (
                         <div
                             onClick={this.fileClicked.bind(this, item)}
-                            className="home__folder-nav--file"
+                            className={
+                                item === this.props.targetFile
+                                    ? `selected ${this.fileClass}`
+                                    : this.fileClass
+                            }
                         >
                             <List.Item>{item}</List.Item>
                         </div>

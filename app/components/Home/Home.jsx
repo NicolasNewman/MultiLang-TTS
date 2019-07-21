@@ -27,6 +27,8 @@ export default class Home extends Component {
                         addTab={this.props.addTab}
                         removeTab={this.props.removeTab}
                         panes={this.props.panes}
+                        setFile={this.props.setFile}
+                        targetFile={this.props.targetFile}
                     />
                 </div>
                 <div className="home__main-content">
@@ -36,7 +38,7 @@ export default class Home extends Component {
                     >
                         <AudioInput />
                     </div>
-                    <Controls />
+                    <Controls targetFile={this.props.targetFile} />
                 </div>
             </div>
         );
