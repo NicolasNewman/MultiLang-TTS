@@ -1,6 +1,7 @@
 import * as React from 'react';
 // import { Layout, Menu } from 'antd';
 import FolderNav from '../FolderNav/FolderNav';
+import AudioInput from '../AudioInput/AudioInput';
 // import Input from '../Input/Input';
 // import Controls from '../Controls/Controls';
 import { TabModel } from '../../reducers/folder';
@@ -18,7 +19,9 @@ export default class Home extends React.Component {
                         panes={this.props.panes}
                     />
                 </div>
-                <div className="home__main-content">{/* <p>Hi</p> */}</div>
+                <div className="home__main-content">
+                    <AudioInput />
+                </div>
             </div>
         );
     }
