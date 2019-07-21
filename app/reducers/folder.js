@@ -18,11 +18,14 @@ export default function folder(state = initialState, action) {
             return {
                 panes: [
                     ...state.panes,
-                    { title: action.title, key: '2', content: '3' }
+                    { title: action.title, key: action.key, content: '3' }
                 ]
             };
         case REMOVE_TAB:
-            console.log('remove');
+            return {
+                panes: state.panes.filter(pane => pane.key !== action.key)
+            };
+
         default:
             return state;
     }

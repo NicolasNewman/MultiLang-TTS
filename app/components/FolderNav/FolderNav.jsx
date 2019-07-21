@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Tabs } from 'antd';
+import FileList from '../FileList/FileList';
+// import { Dispatch } from 'redux';
 
 const { TabPane } = Tabs;
 
@@ -13,6 +15,12 @@ class FolderNav extends React.Component {
         };
         // console.log();
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.panes.length !== this.props.panes.length) {
+            this.setState({ panes: this.props.panes });
+        }
+    }
     // console.log(props);
     // console.log(props.panes);
 
@@ -23,30 +31,34 @@ class FolderNav extends React.Component {
         this[action](targetKey);
     };
     add = () => {
-        const panes = [...this.state.panes];
         const activeKey = `newTab${this.newTabIndex++}`;
-        panes.push({
-            title: 'New tab',
-            content: 'content',
-            key: activeKey
-        });
-        this.setState({ panes });
+        this.props.addTab('hi', activeKey);
+        // const panes = [...this.state.panes];
+        // console.log(panes);
+        // console.log(panes);
+        // panes.push({
+        //     title: 'New tab',
+        //     content: 'content',
+        //     key: activeKey
+        // });
+        // this.setState({ panes });
     };
 
     remove = targetKey => {
-        let activeKey = this.state.activeKey;
-        let lastIndex;
-        this.state.panes.forEach((pane, i) => {
-            if (pane.key === targetKey) {
-                lastIndex = i - 1;
-            }
-        });
-        const panes = this.state.panes.filter(pane => pane.key !== targetKey);
-        this.setState({ panes, activeKey });
+        this.props.removeTab(targetKey);
+        // let activeKey = this.state.activeKey;
+        // let lastIndex;
+        // this.state.panes.forEach((pane, i) => {
+        //     if (pane.key === targetKey) {
+        //         lastIndex = i - 1;
+        //     }
+        // });
+        // const panes = this.state.panes.filter(pane => pane.key !== targetKey);
+        // this.setState({ panes, activeKey });
     };
 
     render() {
-        console.log(this.state);
+        console.log(this.props);
         return (
             // <p>Hello</p>
             <Tabs
@@ -62,7 +74,8 @@ class FolderNav extends React.Component {
                             key={pane.key}
                             // closable={pane.closable}
                         >
-                            {pane.content}
+                            <FileList />
+                            {/* {pane.content} */}
                         </TabPane>
                     );
                 })}

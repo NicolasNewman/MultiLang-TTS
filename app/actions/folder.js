@@ -1,10 +1,11 @@
 export const ADD_TAB = 'ADD_TAB';
 export const REMOVE_TAB = 'REMOVE_TAB';
 
-export function addTab(title) {
+export function addTab(title, key) {
     return {
         type: ADD_TAB,
-        title
+        title,
+        key
     };
 }
 

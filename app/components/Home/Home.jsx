@@ -13,7 +13,12 @@ export default class Home extends React.Component {
         return (
             <div className="home">
                 <div className="home__folder-nav ">
-                    <FolderNav panes={this.props.panes} />>
+                    <FolderNav
+                        addTab={this.props.addTab}
+                        removeTab={this.props.removeTab}
+                        panes={this.props.panes}
+                    />
+                    >
                 </div>
                 <div className="home__main-content">
                     <p>Hi</p>
