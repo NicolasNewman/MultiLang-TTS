@@ -6,8 +6,8 @@ import { setFile } from '../../actions/file';
 
 export default class FileList extends Component {
     state = {
-        data: [],
-        targetFile: ''
+        data: []
+        // targetFile: ''
     };
     readDirAsync = promisify(readdir);
     fileClass = 'home__folder-nav--file';

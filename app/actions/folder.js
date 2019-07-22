@@ -1,5 +1,6 @@
 export const ADD_TAB = 'ADD_TAB';
 export const REMOVE_TAB = 'REMOVE_TAB';
+export const SET_FOLDER = 'SET_FOLDER';
 
 export function addTab(title, key, path) {
     return {
@@ -17,4 +18,11 @@ export function removeTab(key) {
     };
 }
 
-export default { addTab, removeTab };
+export function setTargetFolder(folder) {
+    return {
+        type: SET_FOLDER,
+        targetFolder: folder
+    };
+}
+
+export default { addTab, removeTab, setTargetFolder };

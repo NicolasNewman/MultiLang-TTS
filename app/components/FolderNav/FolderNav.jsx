@@ -9,19 +9,20 @@ class FolderNav extends React.Component {
     constructor(props) {
         super(props);
         this.newTabIndex = 0;
-        this.state = {
-            activeKey: this.props.panes[0] ? this.props.panes[0].key : 0,
-            panes: this.props.panes
-        };
+        // this.state = {
+        //     activeKey: this.props.panes[0] ? this.props.panes[0].key : '0' // TODO: needed?
+        //     // panes: this.props.panes
+        // };
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.panes.length !== this.props.panes.length) {
-            this.setState({ panes: this.props.panes });
+            // this.setState({ panes: this.props.panes });
         }
     }
 
     onEdit = (targetKey, action) => {
+        console.log('onEdit');
         this[action](targetKey);
     };
 
@@ -33,26 +34,36 @@ class FolderNav extends React.Component {
         let name = path.substr(path.lastIndexOf('\\') + 1, path.length - 1);
         name = name.length > 5 ? name.substr(0, 5).concat('...') : name;
 
-        const activeKey = `newTab${this.newTabIndex++}`;
-
+        const activeKey = `${name}`;
         this.props.addTab(name, activeKey, path);
+        // this.props.set
     };
 
     remove = targetKey => {
         this.props.removeTab(targetKey);
     };
 
+    onChange = activeKey => {
+        let path = '';
+        this.props.panes.forEach(pane => {
+            if (activeKey === pane.title) {
+                path = pane.path;
+            }
+        });
+        this.props.setTargetFolder(path);
+    };
+
     render() {
         console.log(this.props);
         return (
             <Tabs
-                // onChange={this.onChange}
+                onChange={this.onChange}
                 // activeKey={this.state.activeKey}
                 type="editable-card"
                 tabPosition="left"
                 onEdit={this.onEdit}
             >
-                {this.state.panes.map(pane => {
+                {this.props.panes.map(pane => {
                     return (
                         <TabPane
                             tab={pane.title}

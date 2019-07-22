@@ -10,6 +10,7 @@ import FileActions from '../actions/file';
 const mapStateToProps = state => {
     return {
         panes: state.folder.panes,
+        targetFolder: state.folder.targetFolder,
         targetFile: state.file.file
     };
 };

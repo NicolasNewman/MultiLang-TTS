@@ -29,6 +29,7 @@ export default class Home extends Component {
                         panes={this.props.panes}
                         setFile={this.props.setFile}
                         targetFile={this.props.targetFile}
+                        setTargetFolder={this.props.setTargetFolder}
                     />
                 </div>
                 <div className="home__main-content">
@@ -38,7 +39,10 @@ export default class Home extends Component {
                     >
                         <AudioInput />
                     </div>
-                    <Controls targetFile={this.props.targetFile} />
+                    <Controls
+                        targetFolder={this.props.targetFolder}
+                        targetFile={this.props.targetFile}
+                    />
                 </div>
             </div>
         );

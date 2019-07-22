@@ -8,10 +8,20 @@ const routes = require('../../constants/routes.json');
 const Controls = props => {
     return (
         <Switch>
-            <Route path={routes.HOME_MEDIA} component={MediaControl} />
+            <Route
+                path={routes.HOME_MEDIA}
+                component={() => (
+                    <MediaControl
+                        targetFolder={props.targetFolder}
+                        targetFile={props.targetFile}
+                    />
+                )}
+            />
             <Route
                 path={routes.HOME_FILE}
-                component={() => <FileControl targetFile={props.targetFile} />}
+                component={() => (
+                    <FileControl targetFolder={props.targetFolder} />
+                )}
             />
         </Switch>
     );

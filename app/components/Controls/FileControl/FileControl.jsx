@@ -2,12 +2,14 @@ import * as React from 'react';
 import { Button, Slider } from 'antd';
 
 const FileControl = props => {
-    console.log(props.targetFile);
+    const download = () => {
+        console.log(props.targetFolder);
+    };
     return (
         <div className="controls">
             <div className="controls__buttons">
-                <Button type="primary">
-                    <i class="fas fa-download" />
+                <Button onClick={download} type="primary">
+                    <i className="fas fa-download" />
                 </Button>
             </div>
         </div>
