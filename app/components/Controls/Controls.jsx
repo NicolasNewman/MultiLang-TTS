@@ -23,6 +23,7 @@ const Controls = props => {
                     <FileControl
                         targetFolder={props.targetFolder}
                         text={props.text}
+                        makeRequest={props.makeRequest}
                     />
                 )}
             />

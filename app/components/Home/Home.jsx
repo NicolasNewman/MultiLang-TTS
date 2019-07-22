@@ -5,10 +5,18 @@ import AudioInput from '../AudioInput/AudioInput';
 // import Input from '../Input/Input';
 import Controls from '../Controls/Controls';
 import { TabModel } from '../../reducers/folder';
+import TTSClient from '../../classes/TTSClient';
+import { key } from '../../constants/key.json';
 
 // const { Footer, Sider, Content, Header } = Layout;
 
 export default class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.client = new TTSClient(key);
+        this.client.setLang('en-US');
+        this.client.setName('en-US-Wavenet-A');
+    }
     toggleControl(path) {
         path = `/home/${path}`;
         if (this.props.history.location.pathname !== path) {
@@ -43,6 +51,7 @@ export default class Home extends Component {
                         targetFolder={this.props.targetFolder}
                         targetFile={this.props.targetFile}
                         text={this.props.text}
+                        makeRequest={this.client.makeRequest}
                     />
                 </div>
             </div>

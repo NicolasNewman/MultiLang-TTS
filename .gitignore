@@ -1,3 +1,6 @@
+app/constants/key*
+
+
 # Logs
 logs
 *.log
