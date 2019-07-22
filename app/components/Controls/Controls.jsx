@@ -20,7 +20,10 @@ const Controls = props => {
             <Route
                 path={routes.HOME_FILE}
                 component={() => (
-                    <FileControl targetFolder={props.targetFolder} />
+                    <FileControl
+                        targetFolder={props.targetFolder}
+                        text={props.text}
+                    />
                 )}
             />
         </Switch>

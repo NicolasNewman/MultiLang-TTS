@@ -37,11 +37,12 @@ export default class Home extends Component {
                         onClick={this.toggleControl.bind(this, 'file')}
                         className="click-wrapper"
                     >
-                        <AudioInput />
+                        <AudioInput setInput={this.props.setInput} />
                     </div>
                     <Controls
                         targetFolder={this.props.targetFolder}
                         targetFile={this.props.targetFile}
+                        text={this.props.text}
                     />
                 </div>
             </div>

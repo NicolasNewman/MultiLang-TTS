@@ -6,17 +6,22 @@ import Home from '../components/Home/Home';
 
 import FolderActions from '../actions/folder';
 import FileActions from '../actions/file';
+import InputActions from '../actions/input';
 
 const mapStateToProps = state => {
     return {
         panes: state.folder.panes,
         targetFolder: state.folder.targetFolder,
-        targetFile: state.file.file
+        targetFile: state.file.file,
+        text: state.input.text
     };
 };
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ ...FolderActions, ...FileActions }, dispatch);
+    return bindActionCreators(
+        { ...FolderActions, ...FileActions, ...InputActions },
+        dispatch
+    );
 };
 
 export default connect(

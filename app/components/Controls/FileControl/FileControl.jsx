@@ -4,6 +4,7 @@ import { Button, Slider } from 'antd';
 const FileControl = props => {
     const download = () => {
         console.log(props.targetFolder);
+        console.log(props.text);
     };
     return (
         <div className="controls">

@@ -9,8 +9,15 @@ import { ADD_TAB, REMOVE_TAB, SET_FOLDER } from '../actions/folder';
 // }
 
 const initialState = {
-    panes: [],
-    targetFolder: ''
+    panes: [
+        {
+            title: 'Documents',
+            key: 'Documents',
+            content: '',
+            path: 'C:\\Users\\Nicolas Newman\\Documents'
+        }
+    ],
+    targetFolder: 'C:\\Users\\Nicolas Newman\\Documents'
     // panes: [{ title: 'Test', key: '0', content: 'Hello', path: '' }]
 };
 
