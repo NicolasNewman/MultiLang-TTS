@@ -1,6 +1,6 @@
 export const SET_LANG = 'SET_LANG';
 export const SET_VOICE = 'SET_VOICE';
-export const LOAD_VOICES = 'SET_VOICES';
+export const LOAD_DICT = 'LOAD_DICT';
 
 export function setLang(lang) {
     return {
@@ -16,11 +16,11 @@ export function setVoice(voice) {
     };
 }
 
-export function loadVoiceDict(voiceDict) {
+export function loadDict(ttsDict) {
     return {
-        type: LOAD_VOICES,
-        voiceDict
+        type: LOAD_DICT,
+        ttsDict
     };
 }
 
-export default { setLang, setVoice, loadVoiceDict };
+export default { setLang, setVoice, loadDict };

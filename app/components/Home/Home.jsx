@@ -13,10 +13,16 @@ import { key } from '../../constants/key.json';
 export default class Home extends Component {
     constructor(props) {
         super(props);
+        console.log('HOME CONSTRUCTOR!!!');
         this.client = new TTSClient(key);
-        this.client.setLang('en-US');
-        this.client.setName('en-US-Wavenet-A');
-        this.client.buildVoicesDict();
+        // this.client.setLang('en-US');
+        // this.client.setName('en-US-Wavenet-A');
+        this.client
+            .buildVoicesDict()
+            .then(res => {
+                this.props.loadDict(res);
+            })
+            .catch(err => {});
     }
     toggleControl(path) {
         path = `/home/${path}`;
@@ -53,7 +59,14 @@ export default class Home extends Component {
                         targetFile={this.props.targetFile}
                         text={this.props.text}
                         makeRequest={this.client.makeRequest}
-                        getVoices={this.client.getVoices}
+                        lang={this.props.lang}
+                        setLang={this.props.setLang}
+                        langDict={this.props.langDict}
+                        voice={this.props.voice}
+                        setVoice={this.props.setVoice}
+                        voiceDict={this.props.voiceDict}
+                        ttsDict={this.props.ttsDict}
+                        // getVoices={this.client.getVoices}
                     />
                 </div>
             </div>

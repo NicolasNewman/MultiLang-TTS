@@ -7,19 +7,25 @@ import Home from '../components/Home/Home';
 import FolderActions from '../actions/folder';
 import FileActions from '../actions/file';
 import InputActions from '../actions/input';
+import TTSActions from '../actions/tts';
 
 const mapStateToProps = state => {
     return {
         panes: state.folder.panes,
         targetFolder: state.folder.targetFolder,
         targetFile: state.file.file,
-        text: state.input.text
+        text: state.input.text,
+        lang: state.tts.lang,
+        langDict: state.tts.langDict,
+        voice: state.tts.voice,
+        voiceDict: state.tts.voiceDict,
+        ttsDict: state.tts.ttsDict
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
-        { ...FolderActions, ...FileActions, ...InputActions },
+        { ...FolderActions, ...FileActions, ...InputActions, ...TTSActions },
         dispatch
     );
 };

@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import counter from './counter';
 import folder from './folder';
 import file from './file';
 import input from './input';
-import tts form './tts';
+import tts from './tts';
 
 export default function createRootReducer(history) {
     return combineReducers({
