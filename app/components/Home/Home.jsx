@@ -16,6 +16,7 @@ export default class Home extends Component {
         this.client = new TTSClient(key);
         this.client.setLang('en-US');
         this.client.setName('en-US-Wavenet-A');
+        this.client.buildVoicesDict();
     }
     toggleControl(path) {
         path = `/home/${path}`;
@@ -52,6 +53,7 @@ export default class Home extends Component {
                         targetFile={this.props.targetFile}
                         text={this.props.text}
                         makeRequest={this.client.makeRequest}
+                        getVoices={this.client.getVoices}
                     />
                 </div>
             </div>

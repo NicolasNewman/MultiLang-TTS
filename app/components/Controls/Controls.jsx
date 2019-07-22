@@ -24,6 +24,7 @@ const Controls = props => {
                         targetFolder={props.targetFolder}
                         text={props.text}
                         makeRequest={props.makeRequest}
+                        getVoices={props.getVoices}
                     />
                 )}
             />

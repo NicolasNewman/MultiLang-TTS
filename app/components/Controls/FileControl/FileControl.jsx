@@ -1,22 +1,45 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Button, Slider } from 'antd';
-// import * as axios from 'axios';
+import { Select } from 'antd';
 
-const FileControl = props => {
-    const download = () => {
-        console.log(props.targetFolder);
-        console.log(props.text);
-        props.makeRequest.call(undefined, props.text);
+const { Option, OptGroup } = Select;
+
+class FileControl extends Component {
+    constructor(props) {
+        super(props);
+
+        this.voices = props.getVoices(); // TODO: could be undefined!
+        this.createSelects();
+    }
+
+    download = () => {
+        console.log(this.props.targetFolder);
+        console.log(this.props.text);
+        this.props.makeRequest.call(undefined, this.props.text);
     };
-    return (
-        <div className="controls">
-            <div className="controls__buttons">
-                <Button onClick={download} type="primary">
-                    <i className="fas fa-download" />
-                </Button>
+
+    createSelects = () => {
+        this.langOpt = [];
+        for (let lang in this.voices) {
+            this.langOpt.push(
+                <Option key={lang} value={lang}>
+                    {lang}
+                </Option>
+            );
+        }
+    };
+    render() {
+        return (
+            <div className="controls">
+                <div className="controls__buttons">
+                    <Select style={{ width: 90 }}>{this.langOpt}</Select>
+                    <Button onClick={this.download} type="primary">
+                        <i className="fas fa-download" />
+                    </Button>
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 export default FileControl;
