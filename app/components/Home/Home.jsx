@@ -15,8 +15,6 @@ export default class Home extends Component {
         super(props);
         console.log('HOME CONSTRUCTOR!!!');
         this.client = new TTSClient(key);
-        // this.client.setLang('en-US');
-        // this.client.setName('en-US-Wavenet-A');
         this.client
             .buildVoicesDict()
             .then(res => {

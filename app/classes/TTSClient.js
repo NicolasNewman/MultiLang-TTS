@@ -9,16 +9,6 @@ export default class TTSClient {
         this.startedBuild = false;
     }
 
-    setLang(lang) {
-        console.log('Set lang!');
-        this.lang = lang;
-        console.log(this);
-    }
-
-    setName(name) {
-        this.name = name;
-    }
-
     buildVoicesDict = () => {
         return new Promise(async (res, rej) => {
             const dict = await axios
@@ -35,10 +25,12 @@ export default class TTSClient {
                         if (voice.name.includes('Wavenet')) {
                             const langCode = voice.languageCodes[0];
                             const name = voice.name;
+                            const gender = voice.ssmlGender.charAt(0);
+                            console.log(voice);
                             if (dict.hasOwnProperty(langCode)) {
-                                dict[langCode].push(name);
+                                dict[langCode].push(`${name} (${gender})`);
                             } else {
-                                dict[langCode] = [name];
+                                dict[langCode] = [`${name} (${gender})`];
                             }
                             // console.log(voice);
                         }
@@ -54,30 +46,7 @@ export default class TTSClient {
         });
     };
 
-    // getVoices = () => {
-    //     if (this.voices) {
-    //         return this.voices;
-    //     } else if (!this.buildVoicesDict) {
-    //         this.buildVoicesDict();
-    //         return undefined;
-    //     } else {
-    //         return undefined;
-    //     }
-    //     // return new Promise(async (res, rej) => {
-    //     //     if (this.voices) {
-    //     //         res(this.voices);
-    //     //     } else if (!this.startedBuild) {
-    //     //         await this.buildVoicesDict();
-    //     //         res(this.voices);
-    //     //     } else {
-    //     //         rej(
-    //     //             'The build has already started. Please wait before trying again'
-    //     //         );
-    //     //     }
-    //     // });
-    // };
-
-    makeRequest = text => {
+    makeRequest = (text, lang, voice) => {
         console.log(this);
         axios
             .post(
@@ -89,9 +58,9 @@ export default class TTSClient {
                         text: `${text}`
                     },
                     voice: {
-                        languageCode: `${this.lang}`,
-                        ssmlGender: 'MALE',
-                        name: `${this.name}`
+                        languageCode: `${lang}`,
+                        // ssmlGender: 'MALE',
+                        name: `${name}`
                     },
                     audioConfig: {
                         audioEncoding: 'MP3'

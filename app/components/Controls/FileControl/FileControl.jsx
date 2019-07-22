@@ -25,13 +25,16 @@ class FileControl extends Component {
     }
 
     download = () => {
-        console.log(this.state.langTarget);
-        console.log(this.state.voiceTarget);
-        this.props.makeRequest.call(undefined, this.props.text);
+        this.props.makeRequest(
+            this.props.text,
+            this.props.lang,
+            this.props.voice
+        );
     };
 
     langChange = lang => {
         this.props.setLang(lang);
+        this.props.setVoice('');
     };
 
     voiceChange = voice => {
@@ -52,7 +55,7 @@ class FileControl extends Component {
                     </Select>
                     <Select
                         defaultValue={this.props.voice}
-                        style={{ width: 175 }}
+                        style={{ width: 200 }}
                         onChange={this.voiceChange}
                     >
                         {this.voiceOpt}

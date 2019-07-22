@@ -25,7 +25,6 @@ export default class FileList extends Component {
     }
     fileClicked(filename) {
         this.props.setFile(filename);
-        // this.setState({ targetFile: filename });
     }
     render() {
         return (
