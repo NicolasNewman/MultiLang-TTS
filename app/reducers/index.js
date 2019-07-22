@@ -4,6 +4,7 @@ import counter from './counter';
 import folder from './folder';
 import file from './file';
 import input from './input';
+import tts form './tts';
 
 export default function createRootReducer(history) {
     return combineReducers({
@@ -11,6 +12,7 @@ export default function createRootReducer(history) {
         // counter
         folder,
         file,
-        input
+        input,
+        tts
     });
 }
