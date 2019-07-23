@@ -42,27 +42,13 @@ export default class FileList extends Component {
         return this.state.data.length !== nextState.data.length;
     }
 
-    // componentDidMount() {
-    //     this.getFiles().then(data => {
-    //         data = data.filter(dat => {
-    //             return dat.endsWith('.mp3');
-    //         });
-    //         this.setState({
-    //             data: data
-    //         });
-    //     });
-    // }
-
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     if (this.state.data.length === nextState.data.length) {
-    //         console.log('canceling update');
-    //         return false;
-    //     }
-    // }
     fileClicked(filename) {
         this.props.setFile(filename);
+        this.forceUpdate();
     }
+
     render() {
+        console.log(this.props.targetFile);
         return (
             <div className="home__folder-nav--infinite">
                 <List
