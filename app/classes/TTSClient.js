@@ -26,7 +26,6 @@ export default class TTSClient {
                             const langCode = voice.languageCodes[0];
                             const name = voice.name;
                             const gender = voice.ssmlGender.charAt(0);
-                            console.log(voice);
                             if (dict.hasOwnProperty(langCode)) {
                                 dict[langCode].push(`${name} (${gender})`);
                             } else {
@@ -46,9 +45,9 @@ export default class TTSClient {
         });
     };
 
-    makeRequest = (text, lang, voice) => {
+    makeRequest = async (text, lang, voice, path, filename) => {
         console.log(this);
-        axios
+        const isSuccess = await axios
             .post(
                 `https://texttospeech.googleapis.com/v1/text:synthesize?key=${
                     this.key
@@ -69,10 +68,17 @@ export default class TTSClient {
             )
             .then(res => {
                 const writeFile = util.promisify(fs.writeFile);
-                writeFile('output.mp3', res.data.audioContent, 'base64');
+                writeFile(
+                    `${path}\\${filename}.mp3`,
+                    res.data.audioContent,
+                    'base64'
+                );
+                return true;
             })
             .catch(err => {
                 console.log(err);
+                return false;
             });
+        return isSuccess;
     };
 }

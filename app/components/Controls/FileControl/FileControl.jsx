@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
-import { Button, Slider } from 'antd';
-import { Select } from 'antd';
+import { Button, Slider, Select, Input, Popover } from 'antd';
 
 const { Option, OptGroup } = Select;
+const { Search } = Input;
+const { dialog } = require('electron').remote;
 
 class FileControl extends Component {
+    popoverContent = (
+        <Search
+            placeholder="Enter file name"
+            enterButton="Submit"
+            size="small"
+            onSearch={filename => {
+                this.props
+                    .makeRequest(
+                        this.props.text,
+                        this.props.lang,
+                        this.props.voice,
+                        this.props.targetFolder,
+                        filename
+                    )
+                    .then(res => {
+                        // this.setState({ state: this.state });
+                    });
+            }}
+        />
+    );
+
     constructor(props) {
         super(props);
-
         this.langOpt = this.props.langDict.map(lang => {
             return (
                 <Option key={lang} value={lang}>
@@ -25,11 +46,11 @@ class FileControl extends Component {
     }
 
     download = () => {
-        this.props.makeRequest(
-            this.props.text,
-            this.props.lang,
-            this.props.voice
-        );
+        // this.props.makeRequest(
+        //     this.props.text,
+        //     this.props.lang,
+        //     this.props.voice
+        // );
     };
 
     langChange = lang => {
@@ -60,9 +81,14 @@ class FileControl extends Component {
                     >
                         {this.voiceOpt}
                     </Select>
-                    <Button onClick={this.download} type="primary">
-                        <i className="fas fa-download" />
-                    </Button>
+                    <Popover
+                        content={this.popoverContent}
+                        title="Enter a file name"
+                    >
+                        <Button onClick={this.download} type="primary">
+                            <i className="fas fa-download" />
+                        </Button>
+                    </Popover>
                 </div>
             </div>
         );

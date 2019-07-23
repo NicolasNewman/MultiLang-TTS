@@ -30,7 +30,6 @@ const Controls = props => {
                         voice={props.voice}
                         setVoice={props.setVoice}
                         voiceDict={props.voiceDict}
-                        voiceDict={props.voiceDict}
                         // getVoices={props.getVoices}
                     />
                 )}

@@ -73,6 +73,7 @@ class FolderNav extends React.Component {
                             <FileList
                                 setFile={this.props.setFile}
                                 targetFile={this.props.targetFile}
+                                // targetFolder={this.props.targetFolder}
                                 path={pane.path}
                             />
                         </TabPane>

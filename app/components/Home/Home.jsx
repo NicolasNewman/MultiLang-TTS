@@ -13,7 +13,6 @@ import { key } from '../../constants/key.json';
 export default class Home extends Component {
     constructor(props) {
         super(props);
-        console.log('HOME CONSTRUCTOR!!!');
         this.client = new TTSClient(key);
         this.client
             .buildVoicesDict()
@@ -42,6 +41,7 @@ export default class Home extends Component {
                         panes={this.props.panes}
                         setFile={this.props.setFile}
                         targetFile={this.props.targetFile}
+                        targetFolder={this.props.targetFolder}
                         setTargetFolder={this.props.setTargetFolder}
                     />
                 </div>
