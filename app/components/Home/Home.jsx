@@ -54,6 +54,7 @@ export default class Home extends Component {
                     <Controls
                         targetFolder={this.props.targetFolder}
                         targetFile={this.props.targetFile}
+                        //
                         text={this.props.text}
                         makeRequest={this.client.makeRequest}
                         lang={this.props.lang}
@@ -63,7 +64,14 @@ export default class Home extends Component {
                         setVoice={this.props.setVoice}
                         voiceDict={this.props.voiceDict}
                         ttsDict={this.props.ttsDict}
-                        // getVoices={this.client.getVoices}
+                        //
+                        track={this.props.track}
+                        setTrack={this.props.setTrack}
+                        timeStamp={this.props.timeStamp}
+                        setTime={this.props.setTime}
+                        duration={this.props.duration}
+                        isPlaying={this.props.isPlaying}
+                        setStatus={this.props.setStatus}
                     />
                 </div>
             </div>

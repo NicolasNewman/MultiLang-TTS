@@ -14,6 +14,14 @@ const Controls = props => {
                     <MediaControl
                         targetFolder={props.targetFolder}
                         targetFile={props.targetFile}
+                        //
+                        track={this.props.track}
+                        setTrack={this.props.setTrack}
+                        timeStamp={this.props.timeStamp}
+                        setTime={this.props.setTime}
+                        duration={this.props.duration}
+                        isPlaying={this.props.isPlaying}
+                        setStatus={this.props.setStatus}
                     />
                 )}
             />

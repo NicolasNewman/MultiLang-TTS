@@ -12,6 +12,7 @@ export default function createRootReducer(history) {
         folder,
         file,
         input,
-        tts
+        tts,
+        track
     });
 }

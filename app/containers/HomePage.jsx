@@ -8,24 +8,37 @@ import FolderActions from '../actions/folder';
 import FileActions from '../actions/file';
 import InputActions from '../actions/input';
 import TTSActions from '../actions/tts';
+import TrackActions from '../actions/track';
 
 const mapStateToProps = state => {
     return {
         panes: state.folder.panes,
         targetFolder: state.folder.targetFolder,
         targetFile: state.file.file,
+        //
         text: state.input.text,
         lang: state.tts.lang,
         langDict: state.tts.langDict,
         voice: state.tts.voice,
         voiceDict: state.tts.voiceDict,
-        ttsDict: state.tts.ttsDict
+        ttsDict: state.tts.ttsDict,
+        //
+        track: state.track.track,
+        timeStamp: state.track.timeStamp,
+        duration: state.track.duration,
+        isPlaying: state.track.isPlaying
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators(
-        { ...FolderActions, ...FileActions, ...InputActions, ...TTSActions },
+        {
+            ...FolderActions,
+            ...FileActions,
+            ...InputActions,
+            ...TTSActions,
+            ...TrackActions
+        },
         dispatch
     );
 };
