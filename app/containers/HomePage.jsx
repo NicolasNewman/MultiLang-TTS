@@ -26,7 +26,8 @@ const mapStateToProps = state => {
         track: state.track.track,
         timeStamp: state.track.timeStamp,
         duration: state.track.duration,
-        isPlaying: state.track.isPlaying
+        isPlaying: state.track.isPlaying,
+        playIcon: state.track.playIcon
     };
 };
 

@@ -4,6 +4,7 @@ import folder from './folder';
 import file from './file';
 import input from './input';
 import tts from './tts';
+import track from './track';
 
 export default function createRootReducer(history) {
     return combineReducers({

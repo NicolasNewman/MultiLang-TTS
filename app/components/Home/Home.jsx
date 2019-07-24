@@ -72,6 +72,8 @@ export default class Home extends Component {
                         duration={this.props.duration}
                         isPlaying={this.props.isPlaying}
                         setStatus={this.props.setStatus}
+                        playIcon={this.props.playIcon}
+                        setEventListeners={this.props.setEventListeners}
                     />
                 </div>
             </div>
