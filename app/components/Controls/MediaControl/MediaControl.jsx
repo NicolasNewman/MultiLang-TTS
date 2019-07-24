@@ -5,76 +5,37 @@ import { Howl } from 'howler';
 const { Text } = Typography;
 
 export default class MediaControl extends Component {
-    // sound = undefined;
-    // duration = undefined;
-    // isPlaying = false;
-    // state = {
-    //     playIcon: 'fa-play'
-    // };
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(this.props.playIcon);
-        console.log(nextProps.playIcon);
-    }
-
-    componentDidUpdate() {
-        if (this.trackHasInit) {
-            // this.props.track.on('play', () => {
-            //     this.props.setStatus(true);
-            //     // this.setState({ playIcon: 'fa-pause' }); // can't set state here twice in a row
-            // });
-            // this.props.track.on('pause', () => {
-            //     this.props.setStatus(false);
-            //     // this.setState({ playIcon: 'fa-play' });
-            // });
-            // this.props.track.on('end', () => {
-            //     this.props.setTrack(undefined);
-            //     this.props.setStatus(false);
-            //     this.trackHasInit = false;
-            //     // this.setState({ playIcon: 'fa-pause' });
-            // });
-            // this.props.track.play();
-        }
-        console.log('UPDATE');
-    }
-    play = () => {
-        const src = `${this.props.targetFolder}\\${this.props.targetFile}`;
-        if (!this.props.isPlaying && !this.props.sound) {
-            // this.props.setTrack(src);
-            this.props.setEventListeners(src);
-            // this.props.setStatus(true);
-        } else if (this.props.isPlaying) {
-            this.props.track.pause();
-        } else {
-            this.props.track.play();
-        }
+    state = {
+        playIcon: 'fa-play' // if you switch and go back while paused, it resets to play
     };
 
-    // if (!this.isPlaying && !this.sound) {
-    //     const src = `${this.props.targetFolder}\\${this.props.targetFile}`;
-    //     this.sound = new Howl({
-    //         src
-    //     });
-    //     this.sound.on('play', () => {
-    //         this.isPlaying = true;
-    //         this.duration = this.sound.duration();
-    //         this.setState({ playIcon: 'fa-pause' });
-    //     });
-    //     this.sound.on('end', () => {
-    //         this.isPlaying = false;
-    //         this.setState({ playIcon: 'fa-play' });
-    //         this.sound = undefined;
-    //     });
-    //     this.sound.play();
-    // } else if (!this.isPlaying) {
-    //     this.sound.play();
-    //     this.isPlaying = true;
-    //     this.setState({ playIcon: 'fa-pause' });
-    // } else {
-    //     this.sound.pause();
-    //     this.isPlaying = false;
-    //     this.setState({ playIcon: 'fa-play' });
-    // }
+    play = () => {
+        const src = `${this.props.targetFolder}\\${this.props.targetFile}`;
+        if (
+            !this.props.mediaPlayer.getIsPlaying() &&
+            !this.props.mediaPlayer.isTrackDefined()
+        ) {
+            this.props.mediaPlayer.setTrack(src);
+            this.props.mediaPlayer.play();
+            this.setState({ playIcon: 'fa-pause' });
+        } else if (this.props.mediaPlayer.getIsPlaying()) {
+            this.props.mediaPlayer.pause();
+            this.setState({ playIcon: 'fa-play' });
+        } else {
+            this.props.mediaPlayer.play();
+            this.setState({ playIcon: 'fa-pause' });
+        }
+        // if (!this.props.isPlaying && !this.props.sound) {
+        //     // this.props.setTrack(src);
+        //     this.props.setEventListeners(src);
+        //     // this.props.setStatus(true);
+        // } else if (this.props.isPlaying) {
+        //     this.props.track.pause();
+        // } else {
+        //     this.props.track.play();
+        // }
+    };
+
     render() {
         return (
             <div className="controls">
@@ -94,7 +55,7 @@ export default class MediaControl extends Component {
                         <i className="fas fa-step-backward" />
                     </Button>
                     <Button onClick={this.play} type="primary">
-                        <i className={`fas ${this.props.playIcon}`} />
+                        <i className={`fas ${this.state.playIcon}`} />
                     </Button>
                     <Button type="primary">
                         <i className="fas fa-step-forward" />
@@ -104,5 +65,3 @@ export default class MediaControl extends Component {
         );
     }
 }
-
-// export default MediaControl;

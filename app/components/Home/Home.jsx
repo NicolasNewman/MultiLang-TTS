@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-// import { Layout, Menu } from 'antd';
 import FolderNav from '../FolderNav/FolderNav';
 import AudioInput from '../AudioInput/AudioInput';
-// import Input from '../Input/Input';
 import Controls from '../Controls/Controls';
 import { TabModel } from '../../reducers/folder';
-import TTSClient from '../../classes/TTSClient';
 import { key } from '../../constants/key.json';
+import TTSClient from '../../classes/TTSClient';
+import MediaPlayer from '../../classes/MediaPlayer';
 
 // const { Footer, Sider, Content, Header } = Layout;
 
 export default class Home extends Component {
     constructor(props) {
         super(props);
+        console.log('CONSTRUCTOR');
         this.client = new TTSClient(key);
         this.client
             .buildVoicesDict()
@@ -20,6 +20,7 @@ export default class Home extends Component {
                 this.props.loadDict(res);
             })
             .catch(err => {});
+        this.mediaPlayer = new MediaPlayer();
     }
     toggleControl(path) {
         path = `/home/${path}`;
@@ -65,15 +66,16 @@ export default class Home extends Component {
                         voiceDict={this.props.voiceDict}
                         ttsDict={this.props.ttsDict}
                         //
-                        track={this.props.track}
-                        setTrack={this.props.setTrack}
-                        timeStamp={this.props.timeStamp}
-                        setTime={this.props.setTime}
-                        duration={this.props.duration}
-                        isPlaying={this.props.isPlaying}
-                        setStatus={this.props.setStatus}
-                        playIcon={this.props.playIcon}
-                        setEventListeners={this.props.setEventListeners}
+                        // track={this.props.track}
+                        // setTrack={this.props.setTrack}
+                        // timeStamp={this.props.timeStamp}
+                        // setTime={this.props.setTime}
+                        // duration={this.props.duration}
+                        // isPlaying={this.props.isPlaying}
+                        // setStatus={this.props.setStatus}
+                        // playIcon={this.props.playIcon}
+                        // setEventListeners={this.props.setEventListeners}
+                        mediaPlayer={this.mediaPlayer}
                     />
                 </div>
             </div>
