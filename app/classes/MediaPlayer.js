@@ -64,6 +64,12 @@ export default class MediaPlayer {
         }
     };
 
+    seek = timeStamp => {
+        if (this.track) {
+            this.track.seek(timeStamp);
+        }
+    };
+
     dispatchPlayIcon = icon => {
         store.dispatch(setPlayIcon(icon));
     };

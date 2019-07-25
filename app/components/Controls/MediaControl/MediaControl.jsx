@@ -25,6 +25,9 @@ export default class MediaControl extends Component {
             this.props.mediaPlayer.play();
         }
     };
+    changeTime = time => {
+        this.props.mediaPlayer.seek(time);
+    };
 
     render() {
         return (
@@ -37,6 +40,11 @@ export default class MediaControl extends Component {
                             display: 'inline-block',
                             margin: '0 1rem'
                         }}
+                        min={0}
+                        max={this.props.mediaPlayer.getDuration()}
+                        value={this.props.timeStamp}
+                        // onChange={}
+                        onAfterChange={this.changeTime}
                     />
                     <Text>{this.props.mediaPlayer.getDuration()}</Text>
                 </div>
