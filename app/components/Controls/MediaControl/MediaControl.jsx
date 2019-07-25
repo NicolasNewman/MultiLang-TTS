@@ -42,9 +42,9 @@ export default class MediaControl extends Component {
                         }}
                         min={0}
                         max={this.props.mediaPlayer.getDuration()}
-                        value={this.props.timeStamp}
+                        defaultValue={this.props.timeStamp}
                         // onChange={}
-                        onAfterChange={this.changeTime}
+                        onChange={this.changeTime}
                     />
                     <Text>{this.props.mediaPlayer.getDuration()}</Text>
                 </div>

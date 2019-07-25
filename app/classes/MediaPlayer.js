@@ -67,6 +67,7 @@ export default class MediaPlayer {
     seek = timeStamp => {
         if (this.track) {
             this.track.seek(timeStamp);
+            store.dispatch(setTime(Math.ceil(this.track.seek())));
         }
     };
 
