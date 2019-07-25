@@ -15,15 +15,10 @@ const Controls = props => {
                         targetFolder={props.targetFolder}
                         targetFile={props.targetFile}
                         //
-                        // track={props.track}
-                        // setTrack={props.setTrack}
-                        // timeStamp={props.timeStamp}
-                        // setTime={props.setTime}
-                        // duration={props.duration}
-                        // isPlaying={props.isPlaying}
-                        // setStatus={props.setStatus}
-                        // playIcon={props.playIcon}
-                        // setEventListeners={props.setEventListeners}
+                        playIcon={props.playIcon}
+                        playButtonType={props.playButtonType}
+                        setPlayIcon={props.setPlayIcon}
+                        timeStamp={props.timeStamp}
                         mediaPlayer={props.mediaPlayer}
                     />
                 )}

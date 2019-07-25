@@ -28,3 +28,5 @@ if (module.hot) {
         );
     });
 }
+
+export default store;

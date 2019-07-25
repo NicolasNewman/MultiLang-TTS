@@ -23,11 +23,13 @@ const mapStateToProps = state => {
         voiceDict: state.tts.voiceDict,
         ttsDict: state.tts.ttsDict,
         //
-        track: state.track.track,
+        // track: state.track.track,
         timeStamp: state.track.timeStamp,
-        duration: state.track.duration,
-        isPlaying: state.track.isPlaying,
-        playIcon: state.track.playIcon
+        // duration: state.track.duration,
+        // isPlaying: state.track.isPlaying,
+        playIcon: state.track.playIcon,
+        playButtonType: state.track.playButtonType,
+        setPlayIcon: state.track.setPlayIcon
     };
 };
 

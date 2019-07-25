@@ -65,15 +65,11 @@ class FolderNav extends React.Component {
             >
                 {this.props.panes.map(pane => {
                     return (
-                        <TabPane
-                            tab={pane.title}
-                            key={pane.key}
-                            // closable={pane.closable}
-                        >
+                        <TabPane tab={pane.title} key={pane.key}>
                             <FileList
                                 setFile={this.props.setFile}
                                 targetFile={this.props.targetFile}
-                                // targetFolder={this.props.targetFolder}
+                                mediaPlayer={this.props.mediaPlayer}
                                 path={pane.path}
                             />
                         </TabPane>

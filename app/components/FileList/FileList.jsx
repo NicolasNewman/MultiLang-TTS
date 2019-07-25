@@ -43,6 +43,10 @@ export default class FileList extends Component {
     }
 
     fileClicked(filename) {
+        if (this.props.mediaPlayer.getIsPlaying()) {
+            console.log('is playing');
+            this.props.mediaPlayer.dispatchPlayIcon('fa-stop');
+        }
         this.props.setFile(filename);
         this.forceUpdate();
     }

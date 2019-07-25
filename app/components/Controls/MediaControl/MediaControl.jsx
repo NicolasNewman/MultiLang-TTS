@@ -5,35 +5,25 @@ import { Howl } from 'howler';
 const { Text } = Typography;
 
 export default class MediaControl extends Component {
-    state = {
-        playIcon: 'fa-play' // if you switch and go back while paused, it resets to play
-    };
-
     play = () => {
         const src = `${this.props.targetFolder}\\${this.props.targetFile}`;
-        if (
-            !this.props.mediaPlayer.getIsPlaying() &&
-            !this.props.mediaPlayer.isTrackDefined()
-        ) {
+        const isPlaying = this.props.mediaPlayer.getIsPlaying();
+        const isTrackDefined = this.props.mediaPlayer.isTrackDefined();
+
+        // If the icon is set to stop, cancel the current track (set to stop in FileList.jsx)
+        if (this.props.playIcon === 'fa-stop') {
+            this.props.mediaPlayer.stop();
+            return;
+        }
+
+        if (!isPlaying && !isTrackDefined) {
             this.props.mediaPlayer.setTrack(src);
             this.props.mediaPlayer.play();
-            this.setState({ playIcon: 'fa-pause' });
-        } else if (this.props.mediaPlayer.getIsPlaying()) {
+        } else if (isPlaying) {
             this.props.mediaPlayer.pause();
-            this.setState({ playIcon: 'fa-play' });
         } else {
             this.props.mediaPlayer.play();
-            this.setState({ playIcon: 'fa-pause' });
         }
-        // if (!this.props.isPlaying && !this.props.sound) {
-        //     // this.props.setTrack(src);
-        //     this.props.setEventListeners(src);
-        //     // this.props.setStatus(true);
-        // } else if (this.props.isPlaying) {
-        //     this.props.track.pause();
-        // } else {
-        //     this.props.track.play();
-        // }
     };
 
     render() {
@@ -48,14 +38,17 @@ export default class MediaControl extends Component {
                             margin: '0 1rem'
                         }}
                     />
-                    <Text>{this.props.duration}</Text>
+                    <Text>{this.props.mediaPlayer.getDuration()}</Text>
                 </div>
                 <div className="controls__buttons">
                     <Button type="primary">
                         <i className="fas fa-step-backward" />
                     </Button>
-                    <Button onClick={this.play} type="primary">
-                        <i className={`fas ${this.state.playIcon}`} />
+                    <Button
+                        onClick={this.play}
+                        type={this.props.playButtonType}
+                    >
+                        <i className={`fas ${this.props.playIcon}`} />
                     </Button>
                     <Button type="primary">
                         <i className="fas fa-step-forward" />

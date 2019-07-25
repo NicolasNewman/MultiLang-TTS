@@ -43,6 +43,7 @@ export default class Home extends Component {
                         setFile={this.props.setFile}
                         targetFile={this.props.targetFile}
                         setTargetFolder={this.props.setTargetFolder}
+                        mediaPlayer={this.mediaPlayer}
                     />
                 </div>
                 <div className="home__main-content">
@@ -66,15 +67,10 @@ export default class Home extends Component {
                         voiceDict={this.props.voiceDict}
                         ttsDict={this.props.ttsDict}
                         //
-                        // track={this.props.track}
-                        // setTrack={this.props.setTrack}
-                        // timeStamp={this.props.timeStamp}
-                        // setTime={this.props.setTime}
-                        // duration={this.props.duration}
-                        // isPlaying={this.props.isPlaying}
-                        // setStatus={this.props.setStatus}
-                        // playIcon={this.props.playIcon}
-                        // setEventListeners={this.props.setEventListeners}
+                        playIcon={this.props.playIcon}
+                        playButtonType={this.props.playButtonType}
+                        setPlayIcon={this.props.setPlayIcon}
+                        timeStamp={this.props.timeStamp}
                         mediaPlayer={this.mediaPlayer}
                     />
                 </div>
