@@ -28,7 +28,7 @@ export default withRouter(
         saveClicked = () => {
             this.props.dataStore.set('key', this.state.key);
             this.props.dataStore.set('defaultPath', this.state.defaultPath);
-            // this.props.history.push(routes.HOME_MEDIA);
+            this.props.history.push(routes.HOME_MEDIA);
         };
 
         cancelClicked = () => {

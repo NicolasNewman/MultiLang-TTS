@@ -15,7 +15,7 @@ export default withRouter(
         constructor(props) {
             super(props);
             console.log('CONSTRUCTOR');
-            this.client = new TTSClient(key);
+            this.client = new TTSClient(this.props.dataStore.get('key'));
             this.client
                 .buildVoicesDict()
                 .then(res => {
