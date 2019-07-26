@@ -71,6 +71,7 @@ app.on('ready', async () => {
 
     mainWindow = new BrowserWindow({
         show: false,
+        frame: false,
         width: 1024,
         height: 728
     });
@@ -95,10 +96,10 @@ app.on('ready', async () => {
         mainWindow = null;
     });
 
-    const menuBuilder = new MenuBuilder(mainWindow);
-    menuBuilder.buildMenu();
+    // const menuBuilder = new MenuBuilder(mainWindow);
+    // menuBuilder.buildMenu();
 
     // Remove this if your app does not use auto updates
     // eslint-disable-next-line
-    new AppUpdater();
+    // new AppUpdater();
 });

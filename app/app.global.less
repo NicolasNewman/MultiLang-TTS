@@ -8,8 +8,8 @@
 
 .home {
     display: grid;
-    grid-template-columns: 25vw 75vw;
-    grid-template-rows: 85vh 15vh;
+    grid-template-columns: 25vw calc(~'75vw - 3px');
+    grid-template-rows: calc(~'85vh - 30px') 15vh;
     height: 100vh;
 
     &__folder-nav {
