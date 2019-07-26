@@ -11,7 +11,8 @@ export default class DataStore {
             defaultPath: {
                 type: 'string',
                 description:
-                    'The default path to open to when the program launches'
+                    'The default path to open to when the program launches',
+                default: 'C:\\Users\\Nicolas Newman\\Documents'
             },
             uiMode: {
                 type: 'string',

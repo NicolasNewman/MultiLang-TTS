@@ -1,4 +1,5 @@
 import { ADD_TAB, REMOVE_TAB, SET_FOLDER } from '../actions/folder';
+import DataStore from '../classes/DataStore';
 // export interface TabModel {
 //     title: string;
 //     key: string;
@@ -7,18 +8,21 @@ import { ADD_TAB, REMOVE_TAB, SET_FOLDER } from '../actions/folder';
 // export interface FolderState {
 //     panes: Array<TabModel>;
 // }
-
+const dataStore = new DataStore();
+const defaultPath = dataStore.get('defaultPath');
+const start = defaultPath.lastIndexOf('\\') + 1;
+const end = defaultPath.length - 1;
+const name = defaultPath.substr(start, end);
 const initialState = {
     panes: [
         {
-            title: 'Documents',
-            key: 'Documents',
+            title: name,
+            key: name,
             content: '',
-            path: 'C:\\Users\\Nicolas Newman\\Documents'
+            path: defaultPath
         }
     ],
-    targetFolder: 'C:\\Users\\Nicolas Newman\\Documents'
-    // panes: [{ title: 'Test', key: '0', content: 'Hello', path: '' }]
+    targetFolder: defaultPath
 };
 
 export default function folder(state = initialState, action) {
