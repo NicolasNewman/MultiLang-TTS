@@ -3,15 +3,10 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import Settings from '../components/Settings/Settings';
 
-// class HomePage extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.dataStore = new DataStore();
-//     }
+const mapStateToProps = (state, ownProps) => {
+    return {
+        dataStore: ownProps.dataStore
+    };
+};
 
-//     render() {
-//         return <Settings dataStore={this.dataStore} />;
-//     }
-// }
-
-export default connect()(Settings);
+export default connect(mapStateToProps)(Settings);

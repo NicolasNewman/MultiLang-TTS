@@ -10,8 +10,10 @@ import InputActions from '../actions/input';
 import TTSActions from '../actions/tts';
 import TrackActions from '../actions/track';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
     return {
+        dataStore: ownProps.dataStore,
+        //
         panes: state.folder.panes,
         targetFolder: state.folder.targetFolder,
         targetFile: state.file.file,
