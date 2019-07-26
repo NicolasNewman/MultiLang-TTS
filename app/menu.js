@@ -212,15 +212,22 @@ export default class MenuBuilder {
             {
                 label: '&File',
                 submenu: [
+                    // {
+                    //     label: '&Open',
+                    //     accelerator: 'Ctrl+O'
+                    // },
+                    // {
+                    //     label: '&Close',
+                    //     accelerator: 'Ctrl+W',
+                    //     click: () => {
+                    //         this.mainWindow.close();
+                    //     }
+                    // },
                     {
-                        label: '&Open',
-                        accelerator: 'Ctrl+O'
-                    },
-                    {
-                        label: '&Close',
-                        accelerator: 'Ctrl+W',
+                        label: '&Settings',
+                        accelerator: 'Ctrl+S',
                         click: () => {
-                            this.mainWindow.close();
+                            this.mainWindow.webContents.send('open-settings');
                         }
                     }
                 ]
