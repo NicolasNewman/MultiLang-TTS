@@ -1,0 +1,82 @@
+/*
+ * @NOTE: Prepend a `~` to css file paths that are in your node_modules
+ *        See https://github.com/webpack-contrib/sass-loader#imports
+ */
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~antd/dist/antd.less';
+@import './dark.less';
+@import 'components/Controls/Controls.less';
+@import 'components/Settings/Settings.less';
+
+.home {
+    display: grid;
+    grid-template-columns: 25vw calc(~'75vw - 10px');
+    grid-template-rows: calc(~'85vh - 40px') 15vh;
+    margin-top: 10px;
+    height: 100vh;
+
+    &__folder-nav {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        width: 100%;
+        height: 100%;
+
+        &--infinite {
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        &--file {
+            border-bottom: 1px solid rgb(232, 232, 232);
+            // border-top: 1px solid rgb(232, 232, 232);
+            cursor: pointer;
+            margin: 0 -1rem;
+            padding: 0 1rem;
+            // &:hover {
+            //     &:not(:first-child) {
+            //         border-top: 2px solid rgb(3, 175, 255);
+            //     }
+            //     border-bottom: 2px solid rgb(3, 175, 255);
+            // }
+            & li {
+                transition: margin-left 0.2s;
+                &:hover {
+                    margin-left: 5px;
+                }
+                &:active {
+                    margin-left: 2px;
+                }
+            }
+        }
+    }
+
+    &__main-content {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        width: 100%;
+        height: 100%;
+
+        & .click-wrapper {
+            height: 100%;
+        }
+
+        & textarea {
+            min-height: 100%;
+            max-height: 100% !important;
+            overflow-y: auto;
+        }
+    }
+}
+
+div .selected {
+    // border-bottom: 1px solid rgb(0, 195, 255);
+    // border-top: 1px solid rgb(0, 195, 255);
+    // background-color: #00d9ff4f;
+    color: #1890ff;
+}
+
+.row {
+    display: block;
+    margin: 1rem 0;
+}
