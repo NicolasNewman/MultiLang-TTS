@@ -4,8 +4,14 @@ import { ipcRenderer } from 'electron';
 import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
-import './app.global.less';
 import routes from './constants/routes.json';
+import DataStore from './classes/DataStore';
+
+const dataStore = new DataStore();
+const uiTheme = dataStore.get('uiTheme');
+uiTheme === 'light'
+    ? require('./app.global.light.less')
+    : require('./app.global.dark.less');
 
 const store = configureStore();
 ipcRenderer.on('open-settings', () => {

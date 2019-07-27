@@ -14,7 +14,7 @@ export default class DataStore {
                     'The default path to open to when the program launches',
                 default: 'C:\\Users\\Nicolas Newman\\Documents'
             },
-            uiMode: {
+            uiTheme: {
                 type: 'string',
                 enum: ['light', 'dark'],
                 default: 'light',
