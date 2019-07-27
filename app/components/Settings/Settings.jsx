@@ -4,6 +4,7 @@ import { Button, Input, Checkbox, Typography } from 'antd';
 import routes from '../../constants/routes.json';
 
 const { Text } = Typography;
+const { dialog, app } = require('electron').remote;
 
 export default withRouter(
     class Settings extends Component {
@@ -32,7 +33,21 @@ export default withRouter(
             this.props.dataStore.set('key', this.state.key);
             this.props.dataStore.set('defaultPath', this.state.defaultPath);
             this.props.dataStore.set('uiTheme', this.state.uiTheme);
-            this.props.history.push(routes.HOME_MEDIA);
+            const opt = dialog.showMessageBox({
+                type: 'question',
+                buttons: ['ok', 'cancel'],
+                title: 'Re-launch to Apply Changes?',
+                cancelId: 1,
+                message:
+                    'The software needs to re-launch for some changes to take effect. Do that now?'
+            }); // 0 = ok, 1 = cancel
+            opt === 0
+                ? (() => {
+                      console.log('here');
+                      app.relaunch();
+                      app.exit(0);
+                  })()
+                : this.props.history.push(routes.HOME_MEDIA);
         };
 
         cancelClicked = () => {
