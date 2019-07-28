@@ -57,23 +57,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 -   **Nicolas Newman** - _Creator_ - [NicolasNewman](https://github.com/NicolasNewman)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Release History
 
--   0.2.1
-    -   CHANGE: Update docs (module code remains unchanged)
--   0.2.0
-    -   CHANGE: Remove `setDefaultXYZ()`
-    -   ADD: Add `init()`
--   0.1.1
-    -   FIX: Crash when calling `baz()` (Thanks @GenerousContributorName!)
--   0.1.0
-    -   The first proper release
-    -   CHANGE: Rename `foo()` to `bar()`
 -   0.0.1
-    -   Work in progress
+    -   ALPHA release
