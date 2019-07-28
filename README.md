@@ -4,7 +4,7 @@
 
 ## NOTE: This software is currently in alpha testing
 
-![](header.png)
+![](img/Demo.png)
 
 MultiLang TTS is a text-to-speech software that utilizes Google's WaveNet technology to create human-like speech [(read more about WaveNet)](https://arxiv.org/pdf/1609.03499.pdf). Unlike software currently using WaveNet, MultiLang TTS allows you to supply your own API key. This avoids having to pay a 3rd party for their software to access this technology.
 
@@ -64,5 +64,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Release History
 
+-   0.1.1
+    -   Updated custom-electron-titlebar
 -   0.0.1
     -   ALPHA release

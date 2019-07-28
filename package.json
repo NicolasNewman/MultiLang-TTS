@@ -1,7 +1,7 @@
 {
     "name": "multilang_tts",
     "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "main": "./app/main.prod.js",
     "repository": "https://github.com/NicolasNewman/electron-boilerplate",
     "author": "NicolasNewman <nnewman316@gmail.com>",
