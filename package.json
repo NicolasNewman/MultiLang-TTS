@@ -1,5 +1,5 @@
 {
-    "name": "electron-boilerplate",
+    "name": "multilang_tts",
     "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
     "version": "1.0.0",
     "main": "./app/main.prod.js",
@@ -21,8 +21,8 @@
         "start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js"
     },
     "build": {
-        "productName": "ElectronReact",
-        "appId": "org.develar.ElectronReact",
+        "productName": "MultiLang TTS",
+        "appId": "org.nicolasnewman.MultiLang_TTS",
         "files": [
             "app/dist/",
             "app/app.html",
@@ -65,8 +65,8 @@
         },
         "publish": {
             "provider": "github",
-            "owner": "electron-react-boilerplate",
-            "repo": "electron-react-boilerplate",
+            "owner": "NicolasNewman",
+            "repo": "MultiLang-TTS",
             "private": false
         }
     },
