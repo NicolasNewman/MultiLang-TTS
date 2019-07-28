@@ -6,12 +6,17 @@ import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import routes from './constants/routes.json';
 import DataStore from './classes/DataStore';
+import './app.global.light.less';
 
-const dataStore = new DataStore();
-const uiTheme = dataStore.get('uiTheme');
-uiTheme === 'light'
-    ? require('./app.global.light.less')
-    : require('./app.global.dark.less');
+// const dataStore = new DataStore();
+// const uiTheme = dataStore.get('uiTheme');
+// if (uiTheme === 'light') {
+//     console.log('importing light');
+//     require('./app.global.light.less');
+// } else if (uiTheme === 'dark') {
+//     console.log('importing dark');
+//     require('./app.global.dark.less');
+// }
 
 const store = configureStore();
 ipcRenderer.on('open-settings', () => {
