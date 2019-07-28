@@ -71,7 +71,10 @@ export default merge.smart(baseConfig, {
                 test: /\.global.*\.less$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: './'
+                        }
                     },
                     {
                         loader: 'css-loader',
