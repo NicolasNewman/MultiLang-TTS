@@ -47,6 +47,7 @@ To install the software, navitage to this repository's [releases](https://github
 -   [NodeJS](https://nodejs.org/en/) - The runtime environment
 -   [Electron](https://electronjs.org/) - The GUI framework
 -   [React](https://reactjs.org/) - The UI framework
+-   [antd](https://ant.design/) - The UI theme
 -   [Webpack](https://webpack.js.org/) - The bundler
 
 ## Contributing
