@@ -1,9 +1,11 @@
-export const SET_TRACK = 'SET_TRACK';
-export const SET_TIME = 'SET_POSITION';
-export const SET_STATUS = 'SET_STATUS';
 export const SET_PLAY_ICON = 'SET_PLAY_ICON';
-// export const SET_PLAY_ICON = 'SET_PLAY_ICON';
+export const SET_TIME = 'SET_POSITION';
 
+/**
+ * Action function to set the desired icon identifyer for any play buttons
+ * @param {string} icon
+ * @return {object} action object
+ */
 export function setPlayIcon(icon) {
     return {
         type: SET_PLAY_ICON,
@@ -11,13 +13,11 @@ export function setPlayIcon(icon) {
     };
 }
 
-// export function setTrack(src) {
-//     return {
-//         type: SET_TRACK,
-//         src
-//     };
-// }
-
+/**
+ * Action function to set the current position of the track
+ * @param {string} timeStamp
+ * @return {object} action object
+ */
 export function setTime(timeStamp) {
     return {
         type: SET_TIME,
@@ -25,12 +25,4 @@ export function setTime(timeStamp) {
     };
 }
 
-// export function setStatus(isPlaying) {
-//     return {
-//         type: SET_STATUS,
-//         isPlaying
-//     };
-// }
-
-// export default { setTrack, setTime, setStatus, setEventListeners };
 export default { setPlayIcon, setTime };
