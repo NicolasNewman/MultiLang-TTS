@@ -64,27 +64,30 @@ export default class TTSClient {
      * @returns {boolean} whether or not the request was a success
      */
     makeRequest = async (text, lang, voice, path, filename) => {
-        console.log(this);
+        voice = voice.substr(0, voice.length - 4);
+        const req = {
+            input: {
+                text: `${text}`
+            },
+            voice: {
+                languageCode: `${lang}`,
+                // ssmlGender: 'MALE',
+                name: `${voice}`
+            },
+            audioConfig: {
+                audioEncoding: 'MP3'
+            }
+        };
+        console.log('req', req);
         const isSuccess = await axios
             .post(
                 `https://texttospeech.googleapis.com/v1/text:synthesize?key=${
                     this.key
                 }`,
-                {
-                    input: {
-                        text: `${text}`
-                    },
-                    voice: {
-                        languageCode: `${lang}`,
-                        // ssmlGender: 'MALE',
-                        name: `${name}`
-                    },
-                    audioConfig: {
-                        audioEncoding: 'MP3'
-                    }
-                }
+                req
             )
             .then(res => {
+                console.log('res ', res);
                 const writeFile = util.promisify(fs.writeFile);
                 writeFile(
                     `${path}\\${filename}.mp3`,
