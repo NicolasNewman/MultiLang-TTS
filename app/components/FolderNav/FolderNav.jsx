@@ -5,20 +5,22 @@ import FileList from '../FileList/FileList';
 const { dialog } = require('electron').remote;
 const { TabPane } = Tabs;
 
+/**
+ * Represents the tab pane that displays open folders
+ * A pane is stored as
+ *  panes: [
+        {
+            title:
+            key: 
+            content:
+            path: 
+        }
+    ]
+ */
 class FolderNav extends React.Component {
     constructor(props) {
         super(props);
         this.newTabIndex = 0;
-        // this.state = {
-        //     activeKey: this.props.panes[0] ? this.props.panes[0].key : '0' // TODO: needed?
-        //     // panes: this.props.panes
-        // };
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.panes.length !== this.props.panes.length) {
-            // this.setState({ panes: this.props.panes });
-        }
     }
 
     onEdit = (targetKey, action) => {
@@ -31,12 +33,10 @@ class FolderNav extends React.Component {
             title: 'Select a Folder with Audio Files',
             properties: ['openDirectory']
         })[0];
-        let name = path.substr(path.lastIndexOf('\\') + 1, path.length - 1);
-        name = name.length > 5 ? name.substr(0, 5).concat('...') : name;
+        let name = path.substr(path.lastIndexOf('\\') + 1, path.length - 1); // get path after final \\
+        name = name.length > 5 ? name.substr(0, 5).concat('...') : name; // shorten string
 
-        const activeKey = `${name}`;
-        this.props.addTab(name, activeKey, path);
-        // this.props.set
+        this.props.addTab(name, name, path);
     };
 
     remove = targetKey => {
@@ -49,8 +49,8 @@ class FolderNav extends React.Component {
             if (activeKey === pane.title) {
                 path = pane.path;
             }
-        });
-        this.props.setTargetFolder(path);
+        }); // decide which pane in the store to get the new path from
+        this.props.setTargetFolder(path); // update the redux store with the new targeted path
     };
 
     render() {
@@ -58,7 +58,6 @@ class FolderNav extends React.Component {
         return (
             <Tabs
                 onChange={this.onChange}
-                // activeKey={this.state.activeKey}
                 type="editable-card"
                 tabPosition="left"
                 onEdit={this.onEdit}

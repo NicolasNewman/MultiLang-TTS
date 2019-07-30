@@ -1,13 +1,6 @@
 import { ADD_TAB, REMOVE_TAB, SET_FOLDER } from '../actions/folder';
 import DataStore from '../classes/DataStore';
-// export interface TabModel {
-//     title: string;
-//     key: string;
-//     content: string;
-// }
-// export interface FolderState {
-//     panes: Array<TabModel>;
-// }
+
 const dataStore = new DataStore();
 const defaultPath = dataStore.get('defaultPath');
 const start = defaultPath.lastIndexOf('\\') + 1;
