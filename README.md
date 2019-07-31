@@ -1,4 +1,4 @@
-# MultiLang TTS
+# ![](resources/icons/icon_32x32.png) MultiLang TTS
 
 > Intelligent TTS Software
 
