@@ -54,9 +54,10 @@ To install the software, navitage to this repository's [releases](https://github
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## Authors
+## Contributors
 
 -   **Nicolas Newman** - _Creator_ - [NicolasNewman](https://github.com/NicolasNewman)
+-   **smashicons, freepik, and pixel-perfect** - _Vector image providers_ - [Flaticon](https://flaticon.com)
 
 ## License
 
@@ -64,6 +65,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Release History
 
+-   0.2.2
+    -   Added icon to application
+-   0.1.2
+    -   Fixed voice gender bug
 -   0.1.1
     -   Updated custom-electron-titlebar
 -   0.0.1
