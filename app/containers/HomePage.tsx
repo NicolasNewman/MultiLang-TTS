@@ -1,6 +1,6 @@
 // import * as React from 'react';
 // import { Component } from 'react';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Home from '../components/Home/Home';
 
@@ -10,7 +10,22 @@ import InputActions from '../actions/input';
 import TTSActions from '../actions/tts';
 import TrackActions from '../actions/track';
 
-const mapStateToProps = (state, ownProps) => {
+export interface HomeState {
+    dataStore: any;
+    //
+    panes: any;
+    targetFolder: string;
+    targetFile: string;
+    //
+    text: string;
+    lang: string;
+    langDict: any;
+    voice: string;
+    voiceDict: any;
+    ttsDict: any;
+}
+
+const mapStateToProps = (state: HomeState, ownProps) => {
     return {
         dataStore: ownProps.dataStore,
         //
@@ -35,7 +50,7 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return bindActionCreators(
         {
             ...FolderActions,
