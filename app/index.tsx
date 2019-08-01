@@ -5,7 +5,6 @@ import { AppContainer as ReactHotAppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import routes from './constants/routes.json';
-import DataStore from './classes/DataStore';
 import './app.global.light.less';
 
 // const dataStore = new DataStore();
@@ -32,8 +31,8 @@ render(
     document.getElementById('root')
 );
 
-if (module.hot) {
-    module.hot.accept('./containers/Root', () => {
+if ((module as any).hot) {
+    (module as any).hot.accept('./containers/Root', () => {
         // eslint-disable-next-line global-require
         const NextRoot = require('./containers/Root').default;
         render(

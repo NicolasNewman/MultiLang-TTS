@@ -6,14 +6,19 @@ export enum FolderTypeKeys {
 
 interface AddTabAction {
     type: FolderTypeKeys.ADD_TAB;
+    title: string;
+    key: string;
+    path: string;
 }
 
 interface RemoveTabAction {
     type: FolderTypeKeys.REMOVE_TAB;
+    key: string;
 }
 
 interface SetFolderAction {
     type: FolderTypeKeys.SET_FOLDER;
+    targetFolder: string;
 }
 
 export type FolderTypes = AddTabAction | RemoveTabAction | SetFolderAction;

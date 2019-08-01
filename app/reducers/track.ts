@@ -1,9 +1,9 @@
 import { TrackTypeKeys, TrackTypes } from '../actions/track';
 
-interface InitialStateInterface = {
-    playIcon: string,
-    playButtonType: string,
-    timeStamp: number
+interface InitialStateInterface {
+    playIcon: string;
+    playButtonType: string;
+    timeStamp: number;
 }
 
 const initialState: InitialStateInterface = {
@@ -12,7 +12,10 @@ const initialState: InitialStateInterface = {
     timeStamp: 0
 };
 
-export default function track(state: InitialStateInterface = initialState, action: TrackTypes) {
+export default function track(
+    state: InitialStateInterface = initialState,
+    action: TrackTypes
+) {
     switch (action.type) {
         case TrackTypeKeys.SET_PLAY_ICON:
             return {

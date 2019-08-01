@@ -5,10 +5,12 @@ export enum TrackTypeKeys {
 
 interface SetPlayIconAction {
     type: TrackTypeKeys.SET_PLAY_ICON;
+    icon: string;
 }
 
 interface SetTimeAction {
     type: TrackTypeKeys.SET_TIME;
+    timeStamp: string;
 }
 
 export type TrackTypes = SetPlayIconAction | SetTimeAction;

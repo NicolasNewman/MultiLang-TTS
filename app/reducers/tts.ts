@@ -1,4 +1,4 @@
-import { TTSTypeKeys, TTSType } from '../actions/tts';
+import { TTSTypeKeys, TTSTypes } from '../actions/tts';
 
 interface InitialStateInterface {
     lang: string;

@@ -6,16 +6,22 @@ import routes from '../../constants/routes.json';
 const { Text } = Typography;
 const { dialog, app } = require('electron').remote;
 
-type Props = {
+interface IProps = {
     dataStore: any;
 };
 
+interface IState = {
+    key: string;
+    defaultPath: string;
+    uiTheme: string;
+};
+
 export default withRouter(
-    class Settings extends Component<Props> {
+    class Settings extends Component<IProps, IState> {
         props: Props;
 
-        constructor(props) {
-            super(props);
+        constructor() {
+            super();
             // // this.dataStore = new DataStore();
             const key = this.props.dataStore.get('key');
             const defaultPath = this.props.dataStore.get('defaultPath');

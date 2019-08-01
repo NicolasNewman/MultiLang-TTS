@@ -6,14 +6,17 @@ export enum TTSTypeKeys {
 
 interface SetLangAction {
     type: TTSTypeKeys.SET_LANG;
+    lang: string;
 }
 
 interface SetVoiceAction {
     type: TTSTypeKeys.SET_VOICE;
+    voice: string;
 }
 
 interface LoadDictAction {
     type: TTSTypeKeys.LOAD_DICT;
+    ttsDict: any;
 }
 
 export type TTSTypes = SetLangAction | SetVoiceAction | LoadDictAction;
@@ -32,7 +35,7 @@ export function setVoice(voice: string) {
     };
 }
 
-export function loadDict(ttsDict: string) {
+export function loadDict(ttsDict: any) {
     return {
         type: TTSTypeKeys.LOAD_DICT,
         ttsDict

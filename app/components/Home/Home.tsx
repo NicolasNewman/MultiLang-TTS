@@ -3,11 +3,10 @@ import { withRouter } from 'react-router';
 import FolderNav from '../FolderNav/FolderNav';
 import AudioInput from '../AudioInput/AudioInput';
 import Controls from '../Controls/Controls';
-import { TabModel } from '../../reducers/folder';
-import { key } from '../../constants/key.json';
+// import { TabModel } from '../../reducers/folder';
 import TTSClient from '../../classes/TTSClient';
 import MediaPlayer from '../../classes/MediaPlayer';
-import { setTargetFolder } from 'app/actions/folder';
+// import { setTargetFolder } from 'app/actions/folder';
 
 type Props = {
     dataStore: any;
@@ -22,6 +21,10 @@ type Props = {
     voice: string;
     voiceDict: any;
     ttsDict: any;
+    //
+    timeStamp: number;
+    playIcon: string;
+    playButtonType: string;
     // File Actions
     setFile: () => void;
     getFile: () => void;
@@ -34,11 +37,17 @@ type Props = {
     // Track Actions
     setPlayIcon: () => void;
     setTime: () => void;
+    // TTS Actions
+    setLang: () => void;
+    setVoice: () => void;
+    loadDict: () => void;
 };
 
 export default withRouter(
     class Home extends Component<Props> {
         props: Props;
+        private client;
+        private mediaPlayer;
         constructor(props) {
             super(props);
             console.log('CONSTRUCTOR');

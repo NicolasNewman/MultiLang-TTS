@@ -4,6 +4,7 @@ export enum InputTypeKeys {
 
 interface SetInputAction {
     type: InputTypeKeys.SET_INPUT;
+    text: string;
 }
 
 export type InputTypes = SetInputAction;

@@ -8,6 +8,7 @@ import FolderActions from '../actions/folder';
 import FileActions from '../actions/file';
 import InputActions from '../actions/input';
 import TrackActions from '../actions/track';
+import TTSActions from '../actions/tts';
 
 export interface HomeState {
     dataStore: any;
@@ -22,6 +23,10 @@ export interface HomeState {
     voice: string;
     voiceDict: any;
     ttsDict: any;
+    //
+    timeStamp: number;
+    playIcon: string;
+    playButtonType: string;
 }
 
 const mapStateToProps = (state: HomeState, ownProps) => {
@@ -39,13 +44,9 @@ const mapStateToProps = (state: HomeState, ownProps) => {
         voiceDict: state.tts.voiceDict,
         ttsDict: state.tts.ttsDict,
         //
-        // track: state.track.track,
         timeStamp: state.track.timeStamp,
-        // duration: state.track.duration,
-        // isPlaying: state.track.isPlaying,
         playIcon: state.track.playIcon,
-        playButtonType: state.track.playButtonType,
-        setPlayIcon: state.track.setPlayIcon
+        playButtonType: state.track.playButtonType
     };
 };
 
@@ -55,7 +56,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
             ...FolderActions,
             ...FileActions,
             ...InputActions,
-            ...TrackActions
+            ...TrackActions,
+            ...TTSActions
         },
         dispatch
     );

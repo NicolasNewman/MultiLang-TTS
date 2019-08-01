@@ -8,9 +8,11 @@ import SettingsPage from './containers/SettingsPage';
 import DataStore from './classes/DataStore';
 
 export default class Routes extends Component {
+    private dataStore = new DataStore();
+
     constructor(props) {
         super(props);
-        this.dataStore = new DataStore();
+        // this.dataStore = new DataStore();
     }
     render() {
         return (

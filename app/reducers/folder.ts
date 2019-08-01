@@ -7,15 +7,15 @@ const start = defaultPath.lastIndexOf('\\') + 1;
 const end = defaultPath.length - 1;
 const name = defaultPath.substr(start, end);
 
-interface InitialStateInterface = {
+interface InitialStateInterface {
     panes: [
         {
-            title: string,
-            key: string,
-            path: string
+            title: string;
+            key: string;
+            path: string;
         }
-    ],
-    targetFolder: string
+    ];
+    targetFolder: string;
 }
 
 const initialState: InitialStateInterface = {
@@ -29,7 +29,10 @@ const initialState: InitialStateInterface = {
     targetFolder: defaultPath
 };
 
-export default function folder(state: InitialStateInterface = initialState, action: FolderTypes) {
+export default function folder(
+    state: InitialStateInterface = initialState,
+    action: FolderTypes
+) {
     switch (action.type) {
         case FolderTypeKeys.ADD_TAB:
             return {
