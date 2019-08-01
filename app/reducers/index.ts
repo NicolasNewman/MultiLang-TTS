@@ -5,8 +5,9 @@ import file from './file';
 import input from './input';
 import tts from './tts';
 import track from './track';
+import { History } from 'history';
 
-export default function createRootReducer(history) {
+export default function createRootReducer(history: History) {
     return combineReducers({
         router: connectRouter(history),
         // counter
