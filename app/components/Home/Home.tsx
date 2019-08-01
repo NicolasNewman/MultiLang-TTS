@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router';
+import { RouteComponentProps } from 'react-router-dom';
 import FolderNav from '../FolderNav/FolderNav';
 import AudioInput from '../AudioInput/AudioInput';
 import Controls from '../Controls/Controls';
@@ -8,7 +9,7 @@ import TTSClient from '../../classes/TTSClient';
 import MediaPlayer from '../../classes/MediaPlayer';
 // import { setTargetFolder } from 'app/actions/folder';
 
-type Props = {
+interface IProps extends RouteComponentProps<any> {
     dataStore: any;
     //
     panes: any;
@@ -26,31 +27,33 @@ type Props = {
     playIcon: string;
     playButtonType: string;
     // File Actions
-    setFile: () => void;
+    setFile: (file: string) => void;
     getFile: () => void;
     // Folder Actions
-    addTab: () => void;
-    removeTab: () => void;
-    setTargetFolder: () => void;
+    addTab: (title: string, key: string, path: string) => void;
+    removeTab: (key: string) => void;
+    setTargetFolder: (folder: string) => void;
     // Input Actions
-    setInput: () => void;
+    setInput: (text: string) => void;
     // Track Actions
-    setPlayIcon: () => void;
-    setTime: () => void;
+    setPlayIcon: (icon: string) => void;
+    setTime: (timeStamp: string) => void;
     // TTS Actions
-    setLang: () => void;
-    setVoice: () => void;
-    loadDict: () => void;
-};
+    setLang: (lang: string) => void;
+    setVoice: (voice: string) => void;
+    loadDict: (ttsDict: any) => void;
+}
 
 export default withRouter(
-    class Home extends Component<Props> {
-        props: Props;
+    class Home extends React.Component<IProps> {
+        props: IProps;
         private client;
         private mediaPlayer;
-        constructor(props) {
+
+        constructor(props, history) {
             super(props);
             console.log('CONSTRUCTOR');
+            console.log(history);
             this.client = new TTSClient(this.props.dataStore.get('key'));
             this.client
                 .buildVoicesDict()

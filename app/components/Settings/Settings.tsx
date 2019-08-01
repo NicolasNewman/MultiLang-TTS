@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router';
 import { Button, Input, Checkbox, Typography } from 'antd';
-import routes from '../../constants/routes.json';
+const routes = require('./constants/routes.json');
 
 const { Text } = Typography;
 const { dialog, app } = require('electron').remote;
 
-interface IProps = {
+interface IProps {
     dataStore: any;
-};
+}
 
-interface IState = {
+interface IState {
     key: string;
     defaultPath: string;
     uiTheme: string;
-};
+}
 
 export default withRouter(
-    class Settings extends Component<IProps, IState> {
-        props: Props;
+    class Settings extends React.Component<IProps, IState> {
+        props: IProps;
 
-        constructor() {
-            super();
+        constructor(props) {
+            super(props);
             // // this.dataStore = new DataStore();
             const key = this.props.dataStore.get('key');
             const defaultPath = this.props.dataStore.get('defaultPath');

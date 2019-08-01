@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Switch, Route } from 'react-router';
 import { Redirect } from 'react-router-dom';
-import routes from './constants/routes.json';
+const routes = require('./constants/routes.json');
 import App from './containers/App';
 import HomePage from './containers/HomePage';
 import SettingsPage from './containers/SettingsPage';
 import DataStore from './classes/DataStore';
 
-export default class Routes extends Component {
+export default class Routes extends React.Component {
     private dataStore = new DataStore();
 
     constructor(props) {

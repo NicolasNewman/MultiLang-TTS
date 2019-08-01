@@ -1,5 +1,3 @@
-// import * as React from 'react';
-// import { Component } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Home from '../components/Home/Home';
@@ -29,7 +27,7 @@ export interface HomeState {
     playButtonType: string;
 }
 
-const mapStateToProps = (state: HomeState, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         dataStore: ownProps.dataStore,
         //

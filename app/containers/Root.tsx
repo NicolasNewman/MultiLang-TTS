@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import Routes from '../Routes';
 import { History } from 'history';
 
-type Props = {
+interface IProps {
     store: any;
     history: History<any>;
-};
+}
 
-export default class Root extends Component<Props> {
+export default class Root extends React.Component<IProps> {
     render() {
         const { store, history } = this.props;
         return (
