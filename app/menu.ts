@@ -1,9 +1,15 @@
-import { app, Menu, shell, BrowserWindow } from 'electron';
+import {
+    app,
+    Menu,
+    shell,
+    BrowserWindow,
+    MenuItemConstructorOptions
+} from 'electron';
 
 export default class MenuBuilder {
     mainWindow;
 
-    constructor(mainWindow) {
+    constructor(mainWindow: BrowserWindow) {
         this.mainWindow = mainWindow;
     }
 
@@ -38,11 +44,11 @@ export default class MenuBuilder {
                         this.mainWindow.inspectElement(x, y);
                     }
                 }
-            ]).popup(this.mainWindow);
+            ]).popup({ window: this.mainWindow });
         });
     }
 
-    buildDarwinTemplate() {
+    buildDarwinTemplate(): MenuItemConstructorOptions[] {
         const subMenuAbout = {
             label: 'Electron',
             submenu: [
@@ -207,7 +213,7 @@ export default class MenuBuilder {
         ];
     }
 
-    buildDefaultTemplate() {
+    buildDefaultTemplate(): MenuItemConstructorOptions[] {
         const templateDefault = [
             {
                 label: '&File',
