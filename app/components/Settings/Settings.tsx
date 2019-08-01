@@ -6,8 +6,14 @@ import routes from '../../constants/routes.json';
 const { Text } = Typography;
 const { dialog, app } = require('electron').remote;
 
+type Props = {
+    dataStore: any;
+};
+
 export default withRouter(
-    class Settings extends Component {
+    class Settings extends Component<Props> {
+        props: Props;
+
         constructor(props) {
             super(props);
             // // this.dataStore = new DataStore();

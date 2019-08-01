@@ -7,7 +7,6 @@ import Home from '../components/Home/Home';
 import FolderActions from '../actions/folder';
 import FileActions from '../actions/file';
 import InputActions from '../actions/input';
-import TTSActions from '../actions/tts';
 import TrackActions from '../actions/track';
 
 export interface HomeState {
@@ -56,7 +55,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
             ...FolderActions,
             ...FileActions,
             ...InputActions,
-            ...TTSActions,
             ...TrackActions
         },
         dispatch

@@ -7,11 +7,38 @@ import { TabModel } from '../../reducers/folder';
 import { key } from '../../constants/key.json';
 import TTSClient from '../../classes/TTSClient';
 import MediaPlayer from '../../classes/MediaPlayer';
+import { setTargetFolder } from 'app/actions/folder';
 
-// const { Footer, Sider, Content, Header } = Layout;
+type Props = {
+    dataStore: any;
+    //
+    panes: any;
+    targetFolder: string;
+    targetFile: string;
+    //
+    text: string;
+    lang: string;
+    langDict: any;
+    voice: string;
+    voiceDict: any;
+    ttsDict: any;
+    // File Actions
+    setFile: () => void;
+    getFile: () => void;
+    // Folder Actions
+    addTab: () => void;
+    removeTab: () => void;
+    setTargetFolder: () => void;
+    // Input Actions
+    setInput: () => void;
+    // Track Actions
+    setPlayIcon: () => void;
+    setTime: () => void;
+};
 
 export default withRouter(
-    class Home extends Component {
+    class Home extends Component<Props> {
+        props: Props;
         constructor(props) {
             super(props);
             console.log('CONSTRUCTOR');
