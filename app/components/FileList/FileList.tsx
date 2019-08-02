@@ -1,24 +1,34 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { readdir } from 'fs';
-import { List, message } from 'antd';
+import { List } from 'antd';
 import { promisify } from 'util';
-import { setFile } from '../../actions/file';
 import * as chokidar from 'chokidar';
+
+interface IProps {
+    targetFile: string;
+    mediaPlayer: any;
+    path: string;
+    setFile: (file: string) => void;
+}
+
+interface IState {
+    data: Array<any>;
+}
 
 /**
  * Represents a list of files within a directory
  */
-export default class FileList extends Component {
-    state = {
-        data: []
-    };
+export default class FileList extends React.Component<IProps, IState> {
+    private watcher;
+    props: IProps;
+    state: IState;
 
     constructor(props) {
         super(props);
         this.watcher = chokidar.watch(this.props.path, {
             ignored: /(^|[\/\\])\../,
             persistent: true,
-            depth: '0'
+            depth: 0
         }); // watches for file changes within a directory
         this.watcher.on('all', path => {
             this.getFiles().then(data => {
@@ -28,6 +38,9 @@ export default class FileList extends Component {
                 this.setState({ data: data });
             }); // reading from a directory is asyncronous, wait until it is processed
         });
+        this.state = {
+            data: []
+        };
     }
     readDirAsync = promisify(readdir);
     fileClass = 'home__folder-nav--file';

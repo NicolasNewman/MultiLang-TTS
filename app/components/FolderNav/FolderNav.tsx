@@ -5,6 +5,15 @@ import FileList from '../FileList/FileList';
 const { dialog } = require('electron').remote;
 const { TabPane } = Tabs;
 
+interface IProps {
+    panes: any;
+    targetFile: string;
+    mediaPlayer: any;
+    setFile: (file: string) => void;
+    addTab: (title: string, key: string, path: string) => void;
+    removeTab: (key: string) => void;
+    setTargetFolder: (folder: string) => void;
+}
 /**
  * Represents the tab pane that displays open folders
  * A pane is stored as
@@ -17,10 +26,11 @@ const { TabPane } = Tabs;
         }
     ]
  */
-class FolderNav extends React.Component {
+class FolderNav extends React.Component<IProps> {
+    props: IProps;
+
     constructor(props) {
         super(props);
-        this.newTabIndex = 0;
     }
 
     onEdit = (targetKey, action) => {
