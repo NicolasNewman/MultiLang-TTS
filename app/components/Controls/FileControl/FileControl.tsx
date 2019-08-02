@@ -1,11 +1,32 @@
-import React, { Component } from 'react';
-import { Button, Slider, Select, Input, Popover } from 'antd';
+import * as React from 'react';
+import { Button, Select, Input, Popover } from 'antd';
 
-const { Option, OptGroup } = Select;
+const { Option } = Select;
 const { Search } = Input;
-const { dialog } = require('electron').remote;
 
-class FileControl extends Component {
+interface IProps {
+    targetFolder: string;
+    text: string;
+    lang: string;
+    setLang: (lang: string) => void;
+    setVoice: (voice: string) => void;
+    langDict: any;
+    voice: string;
+    voiceDict: any;
+    makeRequest: (
+        text: string,
+        lang: string,
+        voice: string,
+        path: string,
+        filename: string
+    ) => Promise;
+}
+
+class FileControl extends React.Component<IProps> {
+    props: IProps;
+    private langOpt;
+    private voiceOpt;
+
     popoverContent = (
         <Search
             placeholder="Enter file name"

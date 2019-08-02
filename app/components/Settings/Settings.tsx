@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { withRouter } from 'react-router';
+import { RouteComponentProps } from 'react-router-dom';
 import { Button, Input, Checkbox, Typography } from 'antd';
 const routes = require('./constants/routes.json');
 
 const { Text } = Typography;
 const { dialog, app } = require('electron').remote;
 
-interface IProps {
+interface IProps extends RouteComponentProps<any> {
     dataStore: any;
 }
 

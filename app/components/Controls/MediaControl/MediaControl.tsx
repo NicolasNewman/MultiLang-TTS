@@ -1,10 +1,22 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Button, Slider, Typography } from 'antd';
-import { Howl } from 'howler';
 
 const { Text } = Typography;
 
-export default class MediaControl extends Component {
+interface IProps {
+    targetFolder: string;
+    targetFile: string;
+    //
+    playIcon: string;
+    playButtonType: string;
+    setPlayIcon: (icon: string) => void;
+    timeStamp: number;
+    mediaPlayer: any;
+}
+
+export default class MediaControl extends React.Component<IProps> {
+    props: IProps;
+
     play = () => {
         const src = `${this.props.targetFolder}\\${this.props.targetFile}`;
         const isPlaying = this.props.mediaPlayer.getIsPlaying();
