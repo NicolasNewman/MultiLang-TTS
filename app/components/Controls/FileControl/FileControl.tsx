@@ -19,7 +19,7 @@ interface IProps {
         voice: string,
         path: string,
         filename: string
-    ) => Promise;
+    ) => Promise<any>;
 }
 
 class FileControl extends React.Component<IProps> {

@@ -16,7 +16,7 @@ interface IProps {
         voice: string,
         path: string,
         filename: string
-    ) => void;
+    ) => Promise<any>;
     lang: string;
     setLang: (lang: string) => void;
     setVoice: (voice: string) => void;
@@ -26,13 +26,13 @@ interface IProps {
     ttsDict: any;
     //
     playIcon: string;
-    playButtonType: string;
+    playButtonType: any;
     setPlayIcon: (icon: string) => void;
     timeStamp: number;
     mediaPlayer: any;
 }
 
-export default class Controls<IProps> {
+export default class Controls extends React.Component<IProps> {
     props: IProps;
     render() {
         return (

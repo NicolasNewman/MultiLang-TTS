@@ -8,7 +8,7 @@ interface IProps {
     targetFile: string;
     //
     playIcon: string;
-    playButtonType: string;
+    playButtonType: any;
     setPlayIcon: (icon: string) => void;
     timeStamp: number;
     mediaPlayer: any;

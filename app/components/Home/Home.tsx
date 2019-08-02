@@ -25,7 +25,7 @@ interface IProps extends RouteComponentProps<any> {
     //
     timeStamp: number;
     playIcon: string;
-    playButtonType: string;
+    playButtonType: any;
     // File Actions
     setFile: (file: string) => void;
     getFile: () => void;
