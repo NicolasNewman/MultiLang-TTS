@@ -6,6 +6,12 @@ import { setPlayIcon, setTime } from '../actions/track';
  * Manages everything related to playing media files within the app
  */
 export default class MediaPlayer {
+    private track;
+    private isPlaying: boolean;
+    private timeStampInterval;
+    private duration: number;
+    private timeStamp: number;
+
     constructor() {
         this.track = undefined;
         this.isPlaying = false;
@@ -18,7 +24,7 @@ export default class MediaPlayer {
      * Overwrites track with a new source file and initializes the event handlers
      * @param {string} src - the path to the audio file
      */
-    setTrack = src => {
+    setTrack = (src: string) => {
         this.track = new Howl({
             src
         });
@@ -50,19 +56,19 @@ export default class MediaPlayer {
         });
     };
 
-    play = () => {
+    play = (): void => {
         if (this.track) {
             this.track.play();
         }
     };
 
-    pause = () => {
+    pause = (): void => {
         if (this.track) {
             this.track.pause();
         }
     };
 
-    stop = () => {
+    stop = (): void => {
         if (this.track) {
             this.track.stop();
             this.track = undefined;
@@ -75,30 +81,30 @@ export default class MediaPlayer {
      * Changes the playback position of the current track
      * @param {string} timestamp - the new position within the track
      */
-    seek = timeStamp => {
+    seek = (timeStamp: number): void => {
         if (this.track) {
             this.track.seek(timeStamp);
             store.dispatch(setTime(Math.ceil(this.track.seek())));
         }
     };
 
-    dispatchPlayIcon = icon => {
+    dispatchPlayIcon = (icon: string): void => {
         store.dispatch(setPlayIcon(icon));
     };
 
-    getDuration = () => {
+    getDuration = (): number => {
         return this.duration;
     };
 
-    getTimeStamp = () => {
+    getTimeStamp = (): number => {
         return this.timeStamp;
     };
 
-    getIsPlaying = () => {
+    getIsPlaying = (): boolean => {
         return this.isPlaying;
     };
 
-    isTrackDefined = () => {
+    isTrackDefined = (): boolean => {
         return this.track === undefined ? false : true;
     };
 }

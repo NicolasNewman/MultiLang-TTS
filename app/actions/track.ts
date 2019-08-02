@@ -32,7 +32,7 @@ export function setPlayIcon(icon: string) {
  * @param {string} timeStamp
  * @return {object} action object
  */
-export function setTime(timeStamp: string) {
+export function setTime(timeStamp: number) {
     return {
         type: TrackTypeKeys.SET_TIME,
         timeStamp
