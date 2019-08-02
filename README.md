@@ -65,6 +65,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Release History
 
+-   0.3.0
+    -   Converted back to Typescript
 -   0.2.2
     -   Added icon to application
 -   0.1.2
