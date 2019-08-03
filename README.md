@@ -63,7 +63,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Release History
+## Version History
 
 -   0.3.0
     -   Converted back to Typescript
