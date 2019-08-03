@@ -25,6 +25,10 @@ export default class MediaPlayer {
      * @param {string} src - the path to the audio file
      */
     setTrack = (src: string) => {
+        if (!src.includes('.mp3')) {
+            return;
+        } // cancel task if no file is selected
+
         this.track = new Howl({
             src
         });
@@ -84,6 +88,13 @@ export default class MediaPlayer {
     seek = (timeStamp: number): void => {
         if (this.track) {
             this.track.seek(timeStamp);
+            store.dispatch(setTime(Math.ceil(this.track.seek())));
+        }
+    };
+
+    step = (amount: number): void => {
+        if (this.track) {
+            this.track.seek(this.track.seek() + amount);
             store.dispatch(setTime(Math.ceil(this.track.seek())));
         }
     };

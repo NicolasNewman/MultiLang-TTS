@@ -37,8 +37,13 @@ export default class MediaControl extends React.Component<IProps> {
             this.props.mediaPlayer.play();
         }
     };
-    changeTime = time => {
+
+    changeTime = (time: number) => {
         this.props.mediaPlayer.seek(time);
+    };
+
+    step = (amount: number) => {
+        this.props.mediaPlayer.step(amount);
     };
 
     render() {
@@ -61,7 +66,7 @@ export default class MediaControl extends React.Component<IProps> {
                     <Text>{this.props.mediaPlayer.getDuration()}</Text>
                 </div>
                 <div className="controls__buttons">
-                    <Button type="primary">
+                    <Button onClick={() => this.step(-5)} type="primary">
                         <i className="fas fa-step-backward" />
                     </Button>
                     <Button
@@ -70,7 +75,7 @@ export default class MediaControl extends React.Component<IProps> {
                     >
                         <i className={`fas ${this.props.playIcon}`} />
                     </Button>
-                    <Button type="primary">
+                    <Button onClick={() => this.step(5)} type="primary">
                         <i className="fas fa-step-forward" />
                     </Button>
                 </div>
