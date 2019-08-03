@@ -1,4 +1,5 @@
 import * as React from 'react';
+import MediaPlayer from '../../classes/MediaPlayer';
 import { readdir } from 'fs';
 import { List } from 'antd';
 import { promisify } from 'util';
@@ -6,7 +7,7 @@ import * as chokidar from 'chokidar';
 
 interface IProps {
     targetFile: string;
-    mediaPlayer: any;
+    mediaPlayer: MediaPlayer;
     path: string;
     setFile: (file: string) => void;
 }

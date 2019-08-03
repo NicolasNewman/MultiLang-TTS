@@ -1,4 +1,5 @@
 import * as React from 'react';
+import MediaPlayer from '../../classes/MediaPlayer';
 import { Switch, Route } from 'react-router';
 import FileControl from './FileControl/FileControl';
 import MediaControl from './MediaControl/MediaControl';
@@ -29,7 +30,7 @@ interface IProps {
     playButtonType: any;
     setPlayIcon: (icon: string) => void;
     timeStamp: number;
-    mediaPlayer: any;
+    mediaPlayer: MediaPlayer;
 }
 
 export default class Controls extends React.Component<IProps> {
@@ -72,44 +73,3 @@ export default class Controls extends React.Component<IProps> {
         );
     }
 }
-
-// const Controls = props => {
-//     return (
-//         <Switch>
-//             <Route
-//                 path={routes.HOME_MEDIA}
-//                 component={() => (
-//                     <MediaControl
-//                         targetFolder={props.targetFolder}
-//                         targetFile={props.targetFile}
-//                         //
-//                         playIcon={props.playIcon}
-//                         playButtonType={props.playButtonType}
-//                         setPlayIcon={props.setPlayIcon}
-//                         timeStamp={props.timeStamp}
-//                         mediaPlayer={props.mediaPlayer}
-//                     />
-//                 )}
-//             />
-//             <Route
-//                 path={routes.HOME_FILE}
-//                 component={() => (
-//                     <FileControl
-//                         targetFolder={props.targetFolder}
-//                         text={props.text}
-//                         makeRequest={props.makeRequest}
-//                         lang={props.lang}
-//                         setLang={props.setLang}
-//                         langDict={props.langDict}
-//                         voice={props.voice}
-//                         setVoice={props.setVoice}
-//                         voiceDict={props.voiceDict}
-//                         // getVoices={props.getVoices}
-//                     />
-//                 )}
-//             />
-//         </Switch>
-//     );
-// };
-
-// export default Controls;

@@ -48,7 +48,7 @@ export default withRouter(
     class Home extends React.Component<IProps> {
         props: IProps;
         private client;
-        private mediaPlayer;
+        private mediaPlayer: MediaPlayer;
 
         constructor(props, history) {
             super(props);

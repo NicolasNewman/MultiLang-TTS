@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Tabs } from 'antd';
 import FileList from '../FileList/FileList';
+import MediaPlayer from '../../classes/MediaPlayer';
 
 const { dialog } = require('electron').remote;
 const { TabPane } = Tabs;
@@ -8,7 +9,7 @@ const { TabPane } = Tabs;
 interface IProps {
     panes: any;
     targetFile: string;
-    mediaPlayer: any;
+    mediaPlayer: MediaPlayer;
     setFile: (file: string) => void;
     addTab: (title: string, key: string, path: string) => void;
     removeTab: (key: string) => void;

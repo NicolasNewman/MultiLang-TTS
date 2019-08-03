@@ -1,4 +1,5 @@
 import * as React from 'react';
+import MediaPlayer from '../../../classes/MediaPlayer';
 import { Button, Slider, Typography } from 'antd';
 
 const { Text } = Typography;
@@ -11,7 +12,7 @@ interface IProps {
     playButtonType: any;
     setPlayIcon: (icon: string) => void;
     timeStamp: number;
-    mediaPlayer: any;
+    mediaPlayer: MediaPlayer;
 }
 
 export default class MediaControl extends React.Component<IProps> {
