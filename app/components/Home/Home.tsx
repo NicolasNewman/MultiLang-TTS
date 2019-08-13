@@ -5,12 +5,13 @@ import FolderNav from '../FolderNav/FolderNav';
 import AudioInput from '../AudioInput/AudioInput';
 import Controls from '../Controls/Controls';
 // import { TabModel } from '../../reducers/folder';
-import TTSClient from '../../classes/TTSClient';
+import TTSClient, { ITTSClient } from '../../classes/TTSClient';
+import { IDataStore } from '../../classes/DataStore';
 import MediaPlayer from '../../classes/MediaPlayer';
 // import { setTargetFolder } from 'app/actions/folder';
 
 interface IProps extends RouteComponentProps<any> {
-    dataStore: any;
+    dataStore: IDataStore;
     //
     panes: any;
     targetFolder: string;
@@ -47,7 +48,7 @@ interface IProps extends RouteComponentProps<any> {
 export default withRouter(
     class Home extends React.Component<IProps> {
         props: IProps;
-        private client;
+        private client: ITTSClient;
         private mediaPlayer: MediaPlayer;
 
         constructor(props, history) {
@@ -60,7 +61,10 @@ export default withRouter(
                 .then(res => {
                     this.props.loadDict(res);
                 })
-                .catch(err => {});
+                .catch(err => {
+                    console.log('THERE WAS AN ERROR');
+                    console.log(typeof this.client);
+                });
             this.mediaPlayer = new MediaPlayer();
         }
         toggleControl(path) {
