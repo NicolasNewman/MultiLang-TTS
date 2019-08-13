@@ -5,7 +5,18 @@ import * as util from 'util';
 /**
  * Manages any information and requests needed to communicate with Google Cloud
  */
-export default class TTSClient {
+
+export interface ITTSClient {
+    buildVoicesDict(): Promise<any>;
+    makeRequest(
+        text: string,
+        lang: string,
+        voice: string,
+        path: string,
+        filename: string
+    ): Promise<boolean>;
+}
+export default class TTSClient implements ITTSClient {
     private key: string;
     /**
      * @constructor
@@ -19,7 +30,7 @@ export default class TTSClient {
      * Builds a dictonary containing every voice for each language code
      * @returns {Promise}
      */
-    buildVoicesDict = (): Promise<any> => {
+    buildVoicesDict = () => {
         return new Promise(async (res, rej) => {
             const dict = await axios
                 .get(
@@ -61,13 +72,7 @@ export default class TTSClient {
      * @param {string} filename - the name of the generated audio file
      * @returns {boolean} whether or not the request was a success
      */
-    makeRequest = async (
-        text: string,
-        lang: string,
-        voice: string,
-        path: string,
-        filename: string
-    ): Promise<boolean> => {
+    makeRequest = async (text, lang, voice, path, filename) => {
         voice = voice.substr(0, voice.length - 4);
         const req = {
             input: {

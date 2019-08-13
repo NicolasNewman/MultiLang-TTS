@@ -3,7 +3,12 @@ import * as Store from 'electron-store';
 /**
  * Wrapper for electron-store\'s Store object
  */
-export default class DataStore {
+export interface IDataStore {
+    set(key: string, value: any): void;
+    get(key: string): any;
+}
+
+export default class DataStore implements IDataStore {
     private store;
     private schema;
 
@@ -17,6 +22,11 @@ export default class DataStore {
                 type: 'string',
                 description:
                     'The API key used to authenticate with Google cloud'
+            },
+            validKey: {
+                type: 'boolean',
+                description: 'Wheather or not the API key is valid',
+                default: false
             },
             defaultPath: {
                 type: 'string',
@@ -39,7 +49,7 @@ export default class DataStore {
      * @param {string} key - the key the data is stored under
      * @param {*} value - the new value for the data
      */
-    set = (key: string, value: any): void => {
+    set = (key, value) => {
         if (this.schema[key]) {
             console.log('contains key ', key);
             this.store.set(key, value);
@@ -50,7 +60,7 @@ export default class DataStore {
      * @param {string} key - the key the data is stored under
      * @returns {*} the information stored at the given key
      */
-    get = (key: string): any => {
+    get = key => {
         return this.schema[key] ? this.store.get(key) : undefined;
     };
 }
