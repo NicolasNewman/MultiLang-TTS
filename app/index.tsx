@@ -18,6 +18,7 @@ import './app.global.light.less';
 // }
 
 const store = configureStore();
+// Hacky way to access history to push the SETTINGS route
 ipcRenderer.on('open-settings', () => {
     history.push(routes.SETTINGS);
 });
