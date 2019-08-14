@@ -2,10 +2,24 @@ import { Howl } from 'howler';
 import store from '../index';
 import { setPlayIcon, setTime } from '../actions/track';
 
+export interface IMediaPlayer {
+    setTrack(src: string): void;
+    play(): void;
+    pause(): void;
+    stop(): void;
+    seek(timeStamp: number): void;
+    step(amount: number): void;
+    dispatchPlayIcon(icon: string): void;
+    getDuration(): number;
+    getTimeStamp(): number;
+    getIsPlaying(): boolean;
+    isTrackDefined(): boolean;
+}
+
 /**
  * Manages everything related to playing media files within the app
  */
-export default class MediaPlayer {
+export default class MediaPlayer implements IMediaPlayer {
     private track;
     private isPlaying: boolean;
     private timeStampInterval;
@@ -24,7 +38,7 @@ export default class MediaPlayer {
      * Overwrites track with a new source file and initializes the event handlers
      * @param {string} src - the path to the audio file
      */
-    setTrack = (src: string) => {
+    setTrack = src => {
         if (!src.includes('.mp3')) {
             return;
         } // cancel task if no file is selected
@@ -60,19 +74,19 @@ export default class MediaPlayer {
         });
     };
 
-    play = (): void => {
+    play = () => {
         if (this.track) {
             this.track.play();
         }
     };
 
-    pause = (): void => {
+    pause = () => {
         if (this.track) {
             this.track.pause();
         }
     };
 
-    stop = (): void => {
+    stop = () => {
         if (this.track) {
             this.track.stop();
             this.track = undefined;
@@ -85,33 +99,33 @@ export default class MediaPlayer {
      * Changes the playback position of the current track
      * @param {string} timestamp - the new position within the track
      */
-    seek = (timeStamp: number): void => {
+    seek = () => {
         if (this.track) {
             this.track.seek(timeStamp);
             store.dispatch(setTime(Math.ceil(this.track.seek())));
         }
     };
 
-    step = (amount: number): void => {
+    step = (): void => {
         if (this.track) {
             this.track.seek(this.track.seek() + amount);
             store.dispatch(setTime(Math.ceil(this.track.seek())));
         }
     };
 
-    dispatchPlayIcon = (icon: string): void => {
+    dispatchPlayIcon = () => {
         store.dispatch(setPlayIcon(icon));
     };
 
-    getDuration = (): number => {
+    getDuration = () => {
         return this.duration;
     };
 
-    getTimeStamp = (): number => {
+    getTimeStamp = () => {
         return this.timeStamp;
     };
 
-    getIsPlaying = (): boolean => {
+    getIsPlaying = () => {
         return this.isPlaying;
     };
 
