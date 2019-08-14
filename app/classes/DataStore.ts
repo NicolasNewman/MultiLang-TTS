@@ -3,12 +3,7 @@ import * as Store from 'electron-store';
 /**
  * Wrapper for electron-store\'s Store object
  */
-export interface IDataStore {
-    set(key: string, value: any): void;
-    get(key: string): any;
-}
-
-export default class DataStore implements IDataStore {
+export default class DataStore {
     private store;
     private schema;
 
@@ -49,7 +44,7 @@ export default class DataStore implements IDataStore {
      * @param {string} key - the key the data is stored under
      * @param {*} value - the new value for the data
      */
-    set = (key, value) => {
+    set = (key: string, value: any): void => {
         if (this.schema[key]) {
             console.log('contains key ', key);
             this.store.set(key, value);
@@ -60,7 +55,7 @@ export default class DataStore implements IDataStore {
      * @param {string} key - the key the data is stored under
      * @returns {*} the information stored at the given key
      */
-    get = key => {
+    get = (key: string): any => {
         return this.schema[key] ? this.store.get(key) : undefined;
     };
 }
