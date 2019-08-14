@@ -2,10 +2,6 @@ import axios from 'axios';
 import * as fs from 'fs';
 import * as util from 'util';
 
-/**
- * Manages any information and requests needed to communicate with Google Cloud
- */
-
 export interface ITTSClient {
     buildVoicesDict(): Promise<any>;
     makeRequest(
@@ -16,6 +12,10 @@ export interface ITTSClient {
         filename: string
     ): Promise<boolean>;
 }
+
+/**
+ * Manages any information and requests needed to communicate with Google Cloud
+ */
 export default class TTSClient implements ITTSClient {
     private key: string;
     /**
