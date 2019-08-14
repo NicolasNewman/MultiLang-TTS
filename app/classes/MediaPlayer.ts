@@ -74,18 +74,27 @@ export default class MediaPlayer implements IMediaPlayer {
         });
     };
 
+    /**
+     * If the track is defined, play it
+     */
     play = () => {
         if (this.track) {
             this.track.play();
         }
     };
 
+    /**
+     * If the track is defined, pause it. Playback can be resumed by calling play()
+     */
     pause = () => {
         if (this.track) {
             this.track.pause();
         }
     };
 
+    /**
+     * If the track is defined, stop playback of the track and remove it from memory
+     */
     stop = () => {
         if (this.track) {
             this.track.stop();
@@ -99,21 +108,25 @@ export default class MediaPlayer implements IMediaPlayer {
      * Changes the playback position of the current track
      * @param {string} timestamp - the new position within the track
      */
-    seek = () => {
+    seek = timeStamp => {
         if (this.track) {
             this.track.seek(timeStamp);
             store.dispatch(setTime(Math.ceil(this.track.seek())));
         }
     };
 
-    step = (): void => {
+    /**
+     * Jumps the position of the track by a certain amount, relative to where you currently are
+     * @param {number} amount - the amount of time to skip (positive or negative)
+     */
+    step = (amount): void => {
         if (this.track) {
             this.track.seek(this.track.seek() + amount);
             store.dispatch(setTime(Math.ceil(this.track.seek())));
         }
     };
 
-    dispatchPlayIcon = () => {
+    dispatchPlayIcon = icon => {
         store.dispatch(setPlayIcon(icon));
     };
 
