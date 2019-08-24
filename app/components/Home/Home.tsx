@@ -96,7 +96,10 @@ export default withRouter(
                             onClick={this.toggleControl.bind(this, 'file')}
                             className="click-wrapper"
                         >
-                            <AudioInput setInput={this.props.setInput} />
+                            <AudioInput
+                                text={this.props.text}
+                                setInput={this.props.setInput}
+                            />
                         </div>
                         <Controls
                             targetFolder={this.props.targetFolder}

@@ -1,6 +1,8 @@
 import { Howl } from 'howler';
 import store from '../index';
 import { setPlayIcon, setTime } from '../actions/track';
+import { setInput } from '../actions/input';
+import { exists, readFile } from 'fs';
 
 /**
  * Manages everything related to playing media files within the app
@@ -25,6 +27,17 @@ export default class MediaPlayer {
      * @param {string} src - the path to the audio file
      */
     setTrack = (src: string): void => {
+        const datFile = src.replace('.mp3', '.dat');
+        exists(datFile, exists => {
+            if (exists) {
+                readFile(datFile, 'utf-8', (err, data) => {
+                    console.log('err ', err);
+                    store.dispatch(setInput(data));
+                });
+            } else {
+                console.log('dat file does not exist for this track');
+            }
+        });
         if (src.includes('.mp3')) {
             this.track = new Howl({
                 src

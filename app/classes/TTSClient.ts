@@ -93,12 +93,13 @@ export default class TTSClient {
             )
             .then(res => {
                 console.log('res ', res);
+                const basePath = `${path}\\${filename}`;
+                const mp3Path = basePath.concat('.mp3');
+                const datPath = basePath.concat('.dat');
+
                 const writeFile = util.promisify(fs.writeFile);
-                writeFile(
-                    `${path}\\${filename}.mp3`,
-                    res.data.audioContent,
-                    'base64'
-                );
+                writeFile(mp3Path, res.data.audioContent, 'base64');
+                writeFile(datPath, text);
                 return true;
             })
             .catch(err => {

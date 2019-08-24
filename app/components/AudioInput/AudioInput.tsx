@@ -5,6 +5,7 @@ const { TextArea } = Input;
 
 interface IProps {
     setInput: (text: string) => void;
+    text: string;
 }
 
 export default class AudioInput extends React.Component<IProps> {
@@ -16,6 +17,12 @@ export default class AudioInput extends React.Component<IProps> {
     }
 
     render() {
-        return <TextArea onChange={this.getText.bind(this)} autosize={true} />;
+        return (
+            <TextArea
+                value={this.props.text}
+                onChange={this.getText.bind(this)}
+                autosize={true}
+            />
+        );
     }
 }
