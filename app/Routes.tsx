@@ -5,10 +5,10 @@ const routes = require('./constants/routes.json');
 import App from './containers/App';
 import HomePage from './containers/HomePage';
 import SettingsPage from './containers/SettingsPage';
-import DataStore, { IDataStore } from './classes/DataStore';
+import DataStore from './classes/DataStore';
 
 export default class Routes extends React.Component {
-    private dataStore: IDataStore = new DataStore();
+    private dataStore: DataStore = new DataStore();
 
     constructor(props) {
         super(props);
