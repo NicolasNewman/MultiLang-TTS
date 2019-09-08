@@ -65,6 +65,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Version History
 
+-   0.5.0
+    -   Able to delete audio files directly from the program
 -   0.4.0
     -   Now stores a transcription of the audio file's text along with the MP3
 -   0.3.0

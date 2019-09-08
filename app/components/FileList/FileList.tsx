@@ -4,6 +4,9 @@ import { readdir } from 'fs';
 import { List } from 'antd';
 import { promisify } from 'util';
 import * as chokidar from 'chokidar';
+import { unlink } from 'fs';
+
+const { dialog } = require('electron').remote;
 
 interface IProps {
     targetFile: string;
@@ -64,6 +67,35 @@ export default class FileList extends React.Component<IProps, IState> {
         } // turn the play button to a stop button if another file is clicked
         this.props.setFile(filename);
         this.forceUpdate();
+        console.log(filename);
+    }
+
+    async keyPressed(file, e) {
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+            console.log(e.key);
+            const res = await dialog.showMessageBox({
+                type: 'warning',
+                title: 'Delete confirmation',
+                message: `Are you sure you want to delete ${file}?`,
+                buttons: ['Ok', 'Cancel'] // OK: 0, Cancel: 1
+            });
+            console.log(this.props.path + file);
+            if (res === 0) {
+                const mp3 = `${this.props.path}\\${file}`;
+                const dat = `${this.props.path}\\${file.replace(
+                    '.mp3',
+                    '.dat'
+                )}`;
+                const files = [mp3, dat];
+                files.forEach(path => {
+                    unlink(path, err => {
+                        if (err) {
+                            console.log(`UNLINK ERROR: ${err}`);
+                        }
+                    });
+                });
+            }
+        }
     }
 
     render() {
@@ -74,7 +106,10 @@ export default class FileList extends React.Component<IProps, IState> {
                     dataSource={this.state.data}
                     renderItem={item => (
                         <div
+                            // data-filename={item}
                             onClick={this.fileClicked.bind(this, item)}
+                            tabIndex={1}
+                            onKeyUp={this.keyPressed.bind(this, item)}
                             className={
                                 item === this.props.targetFile
                                     ? `selected ${this.fileClass}`
